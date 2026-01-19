@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>有向图分析程序 - 邻接矩阵、拓扑排序、关键路径</title>
+  <style>
+    body {
+      font-family: 'Microsoft YaHei', Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+
+    .header {
+      background: linear-gradient(45deg, #2196F3, #21CBF3);
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    .content {
+      padding: 30px;
+    }
+
+    .input-section {
+      background: #f8f9ff;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-left: 4px solid #2196F3;
+    }
+
+    .input-row {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+      gap: 15px;
+    }
+
+    .input-row:last-child {
+      margin-bottom: 0;
+    }
+
+    label {
+      font-weight: bold;
+      min-width: 100px;
+      color: #333;
+    }
+
+    input[type="number"] {
+      padding: 8px 12px;
+      border: 2px solid #ddd;
+      border-radius: 6px;
+      font-size: 14px;
+      width: 100px;
+      transition: border-color 0.3s;
+    }
+
+    input[type="number"]:focus {
+      outline: none;
+      border-color: #2196F3;
+      box-shadow: 0 0 5px rgba(33, 150, 243, 0.3);
+    }
+
+    .button-group {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s;
+      min-width: 120px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(45deg, #2196F3, #21CBF3);
+      color: white;
+    }
+
+    .btn-secondary {
+      background: linear-gradient(45deg, #4CAF50, #45a049);
+      color: white;
+    }
+
+    .btn-warning {
+      background: linear-gradient(45deg, #FF9800, #F57C00);
+      color: white;
+    }
+
+    .btn-info {
+      background: linear-gradient(45deg, #9C27B0, #673AB7);
+      color: white;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    button:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .result-section {
+      background: #fff;
+      border-radius: 10px;
+      padding: 20px;
+      border: 1px solid #eee;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .result-title {
+      font-size: 16px;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 15px;
+      border-bottom: 2px solid #2196F3;
+      padding-bottom: 5px;
+    }
+
+    #resultDisplay {
+      background: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      padding: 15px;
+      min-height: 400px;
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      overflow-y: auto;
+      color: #333;
+    }
+
+    .success-message {
+      color: #4CAF50;
+      font-weight: bold;
+    }
+
+    .error-message {
+      color: #f44336;
+      font-weight: bold;
+    }
+
+    .warning-message {
+      color: #FF9800;
+      font-weight: bold;
+    }
+
+    .matrix-output {
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+      color: #2196F3;
+    }
+
+    .step-output {
+      color: #4CAF50;
+      margin: 5px 0;
+    }
+
+    .critical-path {
+      color: #9C27B0;
+      font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        margin: 10px;
+        border-radius: 10px;
+      }
+
+      .content {
+        padding: 20px;
+      }
+
+      .input-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+      }
+
+      label {
+        min-width: auto;
+      }
+
+      input[type="number"] {
+        width: 100%;
+        max-width: 200px;
+      }
+
+      .button-group {
+        flex-direction: column;
+      }
+
+      button {
+        min-width: auto;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>有向图分析程序</h1>
+    <p>邻接矩阵 · 拓扑排序 · 关键路径分析</p>
+  </div>
+
+  <div class="content">
+    <div class="input-section">
+      <div class="input-row">
+        <label for="vertexCount">顶点数量:</label>
+        <input type="number" id="vertexCount" min="1" max="20" value="4">
+      </div>
+
+      <div class="input-row">
+        <label for="fromVertex">起始顶点:</label>
+        <input type="number" id="fromVertex" min="0" value="0">
+      </div>
+
+      <div class="input-row">
+        <label for="toVertex">目标顶点:</label>
+        <input type="number" id="toVertex" min="0" value="1">
+      </div>
+
+      <div class="input-row">
+        <label for="edgeWeight">边权重:</label>
+        <input type="number" id="edgeWeight" min="1" value="1">
+      </div>
+
+      <div class="button-group">
+        <button class="btn-primary" onclick="createGraph()">创建图</button>
+        <button class="btn-secondary" onclick="addEdge()">添加边</button>
+        <button class="btn-warning" onclick="showMatrix()">显示邻接矩阵</button>
+        <button class="btn-info" onclick="topologicalSort()">拓扑排序</button>
+        <button class="btn-info" onclick="criticalPath()">关键路径</button>
+      </div>
+    </div>
+
+    <div class="result-section">
+      <div class="result-title">结果显示</div>
+      <div id="resultDisplay">欢迎使用有向图分析程序！请先创建图，然后添加边进行分析。</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // 自定义Vector类 (对应C++的MyVector)
+  class MyVector {
+    constructor() {
+      this.data = [];
+      this.size = 0;
+      this.capacity = 0;
+    }
+
+    // 拷贝构造函数
+    static fromVector(other) {
+      const newVector = new MyVector();
+      if (other.size > 0) {
+        newVector.capacity = other.capacity;
+        newVector.size = other.size;
+        newVector.data = [...other.data];
+      }
+      return newVector;
+    }
+
+    // 赋值操作
+    assign(other) {
+      if (this !== other) {
+        this.cleanup();
+        if (other.size > 0) {
+          this.capacity = other.capacity;
+          this.size = other.size;
+          this.data = [...other.data];
+        }
+      }
+      return this;
+    }
+
+    cleanup() {
+      this.data = [];
+      this.size = 0;
+      this.capacity = 0;
+    }
+
+    pushBack(item) {
+      if (this.size >= this.capacity) {
+        const newCapacity = (this.capacity === 0) ? 1 : this.capacity * 2;
+        const newData = new Array(newCapacity);
+        for (let i = 0; i < this.size; i++) {
+          newData[i] = this.data[i];
+        }
+        this.data = newData;
+        this.capacity = newCapacity;
+      }
+      this.data[this.size++] = item;
+    }
+
+    get(index) {
+      return this.data[index];
+    }
+
+    set(index, value) {
+      this.data[index] = value;
+    }
+
+    getSize() {
+      return this.size;
+    }
+
+    clear() {
+      this.size = 0;
+    }
+
+    empty() {
+      return this.size === 0;
+    }
+  }
+
+  // 自定义Queue类 (对应C++的MyQueue)
+  class MyQueue {
+    constructor(cap = 100) {
+      this.data = new Array(cap);
+      this.front = 0;
+      this.rear = 0;
+      this.capacity = cap;
+      this.size = 0;
+    }
+
+    push(item) {
+      if (this.size < this.capacity) {
+        this.data[this.rear] = item;
+        this.rear = (this.rear + 1) % this.capacity;
+        this.size++;
+      }
+    }
+
+    pop() {
+      if (this.size > 0) {
+        this.front = (this.front + 1) % this.capacity;
+        this.size--;
+      }
+    }
+
+    getFront() {
+      return this.data[this.front];
+    }
+
+    empty() {
+      return this.size === 0;
+    }
+  }
+
+  // 有向图类 (对应C++的DirectedGraph)
+  class DirectedGraph {
+    constructor(n = 0) {
+      this.adjMatrix = null;
+      this.vertexCount = n;
+      this.inDegree = new MyVector();
+      this.ve = new MyVector(); // 最早开始时间
+      this.vl = new MyVector(); // 最晚开始时间
+      this.edges = new MyVector(); // 存储边信息 [from, to, weight]
+
+      if (n > 0) {
+        this.initMatrix(n);
+      }
+    }
+
+    initMatrix(n) {
+      // 清理旧的内存
+      this.adjMatrix = null;
+      this.vertexCount = n;
+
+      // 分配新内存
+      this.adjMatrix = Array(n).fill(null).map(() => Array(n).fill(0));
+
+      // 清理并重新初始化向量
+      this.inDegree.clear();
+      this.ve.clear();
+      this.vl.clear();
+      this.edges.clear();
+
+      for (let i = 0; i < n; i++) {
+        this.inDegree.pushBack(0);
+        this.ve.pushBack(0);
+        this.vl.pushBack(0);
+      }
+    }
+
+    addEdge(from, to, weight = 1) {
+      if (from < 0 || from >= this.vertexCount || to < 0 || to >= this.vertexCount) {
+        return -1; // 无效的顶点索引
+      }
+
+      if (weight <= 0) {
+        return -2; // 无效的权重
+      }
+
+      // 检查边是否已存在
+      if (this.adjMatrix[from][to] !== 0) {
+        return 0; // 边已存在
+      }
+
+      // 添加新边
+      this.adjMatrix[from][to] = weight;
+      const edge = new MyVector();
+      edge.pushBack(from);
+      edge.pushBack(to);
+      edge.pushBack(weight);
+      this.edges.pushBack(edge);
+
+      return 1; // 成功添加
+    }
+
+    getAdjacencyMatrix() {
+      let result = "邻接矩阵:\n   ";
+      for (let i = 0; i < this.vertexCount; i++) {
+        result += String(i).padStart(3);
+      }
+      result += "\n";
+
+      for (let i = 0; i < this.vertexCount; i++) {
+        result += String(i).padStart(2) + " ";
+        for (let j = 0; j < this.vertexCount; j++) {
+          result += String(this.adjMatrix[i][j]).padStart(3);
+        }
+        result += "\n";
+      }
+      return result;
+    }
+
+    calculateInDegree() {
+      for (let i = 0; i < this.vertexCount; i++) {
+        this.inDegree.set(i, 0);
+      }
+
+      for (let j = 0; j < this.vertexCount; j++) {
+        for (let i = 0; i < this.vertexCount; i++) {
+          if (this.adjMatrix[i][j] > 0) {
+            this.inDegree.set(j, this.inDegree.get(j) + 1);
+          }
+        }
+      }
+    }
+
+    topologicalSort() {
+      this.calculateInDegree();
+
+      let result = "拓扑排序过程:\n";
+
+      const tempInDegree = new MyVector();
+      for (let i = 0; i < this.vertexCount; i++) {
+        tempInDegree.pushBack(this.inDegree.get(i));
+      }
+
+      const queue = new MyQueue();
+      const topoOrder = new MyVector();
+
+      // 显示初始入度
+      result += "初始入度: ";
+      for (let i = 0; i < this.vertexCount; i++) {
+        result += `V${i}(${tempInDegree.get(i)}) `;
+      }
+      result += "\n\n";
+
+      // 将入度为0的顶点入队
+      for (let i = 0; i < this.vertexCount; i++) {
+        if (tempInDegree.get(i) === 0) {
+          queue.push(i);
+        }
+      }
+
+      let step = 1;
+      while (!queue.empty()) {
+        const v = queue.getFront();
+        queue.pop();
+        topoOrder.pushBack(v);
+
+        result += `步骤 ${step++}: 输出顶点 V${v}\n`;
+
+        // 更新相邻顶点的入度
+        for (let i = 0; i < this.vertexCount; i++) {
+          if (this.adjMatrix[v][i] > 0) {
+            tempInDegree.set(i, tempInDegree.get(i) - 1);
+            if (tempInDegree.get(i) === 0) {
+              queue.push(i);
+            }
+          }
+        }
+
+        // 显示当前入度状态
+        result += "更新后入度: ";
+        for (let i = 0; i < this.vertexCount; i++) {
+          result += `V${i}(${tempInDegree.get(i)}) `;
+        }
+        result += "\n\n";
+      }
+
+      result += "拓扑排序结果: ";
+      for (let i = 0; i < topoOrder.getSize(); i++) {
+        result += `V${topoOrder.get(i)}`;
+        if (i < topoOrder.getSize() - 1) result += " -> ";
+      }
+      result += "\n";
+
+      if (topoOrder.getSize() !== this.vertexCount) {
+        result += "图中存在环，无法进行拓扑排序!\n";
+      }
+
+      return result;
+    }
+
+    criticalPath() {
+      this.calculateInDegree();
+
+      let result = "关键路径分析:\n\n";
+
+      // 计算Ve值（最早开始时间）
+      const tempInDegree = new MyVector();
+      for (let i = 0; i < this.vertexCount; i++) {
+        tempInDegree.pushBack(this.inDegree.get(i));
+        this.ve.set(i, 0);
+      }
+
+      const queue = new MyQueue();
+      const topoOrder = new MyVector();
+
+      for (let i = 0; i < this.vertexCount; i++) {
+        if (tempInDegree.get(i) === 0) {
+          queue.push(i);
+        }
+      }
+
+      while (!queue.empty()) {
+        const v = queue.getFront();
+        queue.pop();
+        topoOrder.pushBack(v);
+
+        for (let i = 0; i < this.vertexCount; i++) {
+          if (this.adjMatrix[v][i] > 0) {
+            if (this.ve.get(v) + this.adjMatrix[v][i] > this.ve.get(i)) {
+              this.ve.set(i, this.ve.get(v) + this.adjMatrix[v][i]);
+            }
+            tempInDegree.set(i, tempInDegree.get(i) - 1);
+            if (tempInDegree.get(i) === 0) {
+              queue.push(i);
+            }
+          }
+        }
+      }
+
+      // 计算Vl值（最晚开始时间）
+      let maxVe = 0;
+      for (let i = 0; i < this.vertexCount; i++) {
+        if (this.ve.get(i) > maxVe) {
+          maxVe = this.ve.get(i);
+        }
+      }
+
+      for (let i = 0; i < this.vertexCount; i++) {
+        this.vl.set(i, maxVe);
+      }
+
+      // 按拓扑序列逆序计算Vl
+      for (let k = topoOrder.getSize() - 1; k >= 0; k--) {
+        const v = topoOrder.get(k);
+        for (let i = 0; i < this.vertexCount; i++) {
+          if (this.adjMatrix[v][i] > 0) {
+            if (this.vl.get(i) - this.adjMatrix[v][i] < this.vl.get(v)) {
+              this.vl.set(v, this.vl.get(i) - this.adjMatrix[v][i]);
+            }
+          }
+        }
+      }
+
+      // 显示Ve和Vl值
+      result += "Ve值（最早开始时间）:\n";
+      for (let i = 0; i < this.vertexCount; i++) {
+        result += `Ve[${i}] = ${this.ve.get(i)}\n`;
+      }
+      result += "\n";
+
+      result += "Vl值（最晚开始时间）:\n";
+      for (let i = 0; i < this.vertexCount; i++) {
+        result += `Vl[${i}] = ${this.vl.get(i)}\n`;
+      }
+      result += "\n";
+
+      // 计算边的E、L值和关键路径
+      result += "边的分析:\n";
+      result += "边\t权重\tE\tL\tL-E\t是否关键\n";
+
+      const criticalEdges = new MyVector();
+
+      for (let i = 0; i < this.edges.getSize(); i++) {
+        const from = this.edges.get(i).get(0);
+        const to = this.edges.get(i).get(1);
+        const weight = this.edges.get(i).get(2);
+
+        const E = this.ve.get(from);  // 最早开始时间
+        const L = this.vl.get(to) - weight;  // 最晚开始时间
+        const slack = L - E;  // 松弛时间
+
+        result += `(${from},${to})\t${weight}\t${E}\t${L}\t${slack}`;
+
+        if (slack === 0) {
+          result += "\t是";
+          criticalEdges.pushBack(this.edges.get(i));
+        } else {
+          result += "\t否";
+        }
+        result += "\n";
+      }
+
+      result += "\n关键路径上的边: ";
+      for (let i = 0; i < criticalEdges.getSize(); i++) {
+        result += `(${criticalEdges.get(i).get(0)},${criticalEdges.get(i).get(1)})`;
+        if (i < criticalEdges.getSize() - 1) result += " -> ";
+      }
+      result += "\n";
+
+      return result;
+    }
+
+    getVertexCount() {
+      return this.vertexCount;
+    }
+  }
+
+  // 全局变量
+  let graph = new DirectedGraph();
+
+  // UI 函数
+  function updateResult(message, type = 'normal') {
+    const resultDiv = document.getElementById('resultDisplay');
+    let className = '';
+
+    switch(type) {
+      case 'success':
+        className = 'success-message';
+        break;
+      case 'error':
+        className = 'error-message';
+        break;
+      case 'warning':
+        className = 'warning-message';
+        break;
+      case 'matrix':
+        className = 'matrix-output';
+        break;
+      case 'step':
+        className = 'step-output';
+        break;
+      case 'critical':
+        className = 'critical-path';
+        break;
+    }
+
+    resultDiv.innerHTML = `<span class="${className}">${message}</span>`;
+  }
+
+  function createGraph() {
+    const vertexCount = parseInt(document.getElementById('vertexCount').value);
+
+    if (isNaN(vertexCount) || vertexCount <= 0 || vertexCount > 20) {
+      updateResult('请输入有效的顶点数量（1-20）！', 'error');
+      return;
+    }
+
+    graph.initMatrix(vertexCount);
+    updateResult('图创建成功！可以开始添加边。', 'success');
+  }
+
+  function addEdge() {
+    if (graph.getVertexCount() === 0) {
+      updateResult('请先创建图！', 'error');
+      return;
+    }
+
+    const from = parseInt(document.getElementById('fromVertex').value);
+    const to = parseInt(document.getElementById('toVertex').value);
+    const weight = parseInt(document.getElementById('edgeWeight').value);
+
+    if (isNaN(from) || isNaN(to) || isNaN(weight)) {
+      updateResult('请输入有效的数字！', 'error');
+      return;
+    }
+
+    if (from < 0 || from >= graph.getVertexCount() ||
+            to < 0 || to >= graph.getVertexCount()) {
+      updateResult(`错误：顶点编号必须在 0 到 ${graph.getVertexCount() - 1} 之间！`, 'error');
+      return;
+    }
+
+    if (weight <= 0) {
+      updateResult('错误：边的权重必须为正整数！', 'error');
+      return;
+    }
+
+    const result = graph.addEdge(from, to, weight);
+    let message = '';
+
+    switch (result) {
+      case 1: // 成功添加
+        message = `成功添加边: V${from} -> V${to} (权重: ${weight})`;
+        updateResult(message, 'success');
+        break;
+      case 0: // 边已存在
+        message = `警告：边 V${from} -> V${to} 已经存在于图中，无需再次添加！\n当前权重为: [请查看邻接矩阵获取权重信息]`;
+        updateResult(message, 'warning');
+        break;
+      case -1: // 无效顶点
+        updateResult('错误：无效的顶点编号！', 'error');
+        break;
+      case -2: // 无效权重
+        updateResult('错误：权重必须为正数！', 'error');
+        break;
+      default:
+        updateResult('未知错误！', 'error');
+        break;
+    }
+  }
+
+  function showMatrix() {
+    if (graph.getVertexCount() === 0) {
+      updateResult('请先创建图！', 'error');
+      return;
+    }
+
+    const result = graph.getAdjacencyMatrix();
+    updateResult(result, 'matrix');
+  }
+
+  function topologicalSort() {
+    if (graph.getVertexCount() === 0) {
+      updateResult('请先创建图！', 'error');
+      return;
+    }
+
+    const result = graph.topologicalSort();
+    updateResult(result, 'step');
+  }
+
+  function criticalPath() {
+    if (graph.getVertexCount() === 0) {
+      updateResult('请先创建图！', 'error');
+      return;
+    }
+
+    const result = graph.criticalPath();
+    updateResult(result, 'critical');
+  }
+
+  // 初始化页面
+  document.addEventListener('DOMContentLoaded', function() {
+    updateResult('欢迎使用有向图分析程序！请先创建图，然后添加边进行分析。');
+  });
+</script>
+</body>
+</html>

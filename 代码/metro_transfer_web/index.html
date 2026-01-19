@@ -1,0 +1,2645 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <style>
+    /* 确保地铁线路颜色不被覆盖 */
+    .metro-line {
+      stroke-width: 8px !important;
+      fill: none !important;
+      transition: all 0.3s ease;
+    }
+
+    /* 确保站点标签文字为黑色 */
+    .station-label {
+      fill: #333 !important;
+      font-family: 'Inter', 'Noto Sans SC', sans-serif !important;
+      font-size: 11px !important;
+      font-weight: 500 !important;
+      transition: all 0.3s ease;
+    }
+
+    /* 简化的高亮状态 - 只高亮，不变暗 */
+    .metro-line.path-highlight {
+      stroke-width: 12px !important;
+      filter: drop-shadow(0 0 6px currentColor) !important;
+      z-index: 10 !important;
+    }
+
+    /* 站点高亮 */
+    .metro-station.path-highlight {
+      stroke-width: 4px !important;
+      stroke: #007AFF !important;
+      filter: drop-shadow(0 0 4px #007AFF) !important;
+    }
+
+    /* 标签高亮 */
+    .station-label.path-highlight {
+      fill: #007AFF !important;
+      font-weight: 700 !important;
+    }
+
+    /* 变暗效果 - 用于凸显路径 */
+    .metro-line.dimmed {
+      opacity: 0.2 !important;
+      stroke-width: 6px !important;
+    }
+
+    .metro-station.dimmed {
+      opacity: 0.3 !important;
+      stroke-width: 2px !important;
+    }
+
+    .station-label.dimmed {
+      opacity: 0.4 !important;
+      fill: #999 !important;
+    }
+
+    /* 确保高亮元素不被变暗覆盖 */
+    .metro-line.path-highlight {
+      opacity: 1 !important;
+    }
+
+    .metro-station.path-highlight {
+      opacity: 1 !important;
+    }
+
+    .station-label.path-highlight {
+      opacity: 1 !important;
+    }
+
+    /* 确保图例颜色正确显示 */
+    .legend-rect {
+      stroke: #ddd !important;
+      stroke-width: 1px !important;
+    }
+
+    .legend-text {
+      fill: #333 !important;
+      font-family: 'Inter', 'Noto Sans SC', sans-serif !important;
+    }
+
+    /* 左侧控制栏样式 */
+    .left-controls {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    /* 图例容器样式 */
+    .legend-container {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-radius: 12px;
+      padding: 15px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      max-width: 280px;
+    }
+
+    .legend-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .legend-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+
+    .legend-item-new {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .legend-item-new:hover {
+      background: rgba(0, 122, 255, 0.1);
+    }
+
+    .legend-color {
+      width: 16px;
+      height: 16px;
+      border-radius: 3px;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .legend-label {
+      font-size: 11px;
+      font-weight: 500;
+      color: #333;
+      white-space: nowrap;
+    }
+
+    /* 缩放控制按钮组 */
+    .zoom-controls {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-radius: 12px;
+      padding: 8px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .zoom-btn {
+      width: 36px;
+      height: 36px;
+      background: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .zoom-btn:hover {
+      background: #007AFF;
+      color: white;
+      transform: scale(1.05);
+    }
+
+    .zoom-btn:active {
+      transform: scale(0.95);
+    }
+
+    /* 站点悬停优化 - 避免抖动 */
+    .metro-station {
+      fill: white;
+      stroke-width: 3;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      filter: url(#station-shadow);
+    }
+
+    .metro-station:hover {
+      filter: url(#station-hover) !important;
+      stroke: #007AFF !important;
+    }
+
+    .metro-station.selected {
+      fill: #FF3B30 !important;
+      stroke: #FF3B30 !important;
+      filter: url(#station-hover) !important;
+    }
+
+    /* 调试：添加一些视觉提示 */
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.9);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+
+    .loading-spinner {
+      width: 40px;
+      height: 40px;
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid #3498db;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 20px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* 全局样式重置 */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      overflow: hidden;
+    }
+
+    /* 工具类 */
+    .hidden {
+      display: none !important;
+    }
+
+    /* 主应用容器 */
+    .app-container {
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-radius: 20px;
+      margin: 10px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+
+    /* 顶部标题栏 */
+    .app-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 30px;
+      background: linear-gradient(90deg, #007AFF, #5856D6);
+      color: white;
+      box-shadow: 0 4px 20px rgba(0, 122, 255, 0.3);
+    }
+
+    .header-content h1 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+
+    .header-content p {
+      font-size: 14px;
+      opacity: 0.8;
+      font-weight: 300;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .header-btn, .secondary-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .header-btn:hover, .secondary-btn:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
+    }
+
+    /* 主内容区域 */
+    .main-content {
+      flex: 1;
+      display: flex;
+      overflow: hidden;
+    }
+
+    /* 地铁地图容器 */
+    .metro-map-container {
+      flex: 1;
+      position: relative;
+      background: white;
+      border-radius: 0 0 0 20px;
+      overflow: hidden;
+      box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.05);
+      min-height: 400px;
+    }
+
+    .metro-map {
+      width: 100%;
+      height: 100%;
+      cursor: grab;
+      transition: none;
+      transform: translateZ(0);
+      backface-visibility: hidden;
+      perspective: 1000;
+    }
+
+    .metro-map.dragging {
+      cursor: grabbing;
+    }
+
+    .map-content {
+      will-change: transform;
+      transform-origin: 0 0;
+    }
+
+    /* 右侧控制面板 - 增加宽度 */
+    .control-panel {
+      width: 420px;
+      background: rgba(248, 249, 250, 0.95);
+      backdrop-filter: blur(20px);
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      overflow-y: auto;
+      border-left: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .panel-section {
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      width: 100%;
+    }
+
+    .section-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: #1a1a1a;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-title::before {
+      content: '';
+      width: 4px;
+      height: 20px;
+      background: linear-gradient(45deg, #007AFF, #5856D6);
+      border-radius: 2px;
+    }
+
+    /* 表单输入组件 */
+    .input-group {
+      margin-bottom: 20px;
+    }
+
+    .input-group label {
+      display: block;
+      font-size: 14px;
+      font-weight: 500;
+      color: #555;
+      margin-bottom: 8px;
+    }
+
+    .input-with-btn {
+      display: flex;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+      border: 2px solid transparent;
+      transition: all 0.3s ease;
+      width: 100%;
+    }
+
+    .input-with-btn:focus-within {
+      border-color: #007AFF;
+      box-shadow: 0 4px 20px rgba(0, 122, 255, 0.2);
+    }
+
+    .input-with-btn input {
+      flex: 1;
+      padding: 15px 18px;
+      border: none;
+      font-size: 16px;
+      background: white;
+      outline: none;
+      min-width: 0;
+    }
+
+    .input-with-btn input::placeholder {
+      color: #999;
+    }
+
+    .pick-btn {
+      padding: 15px 18px;
+      background: #007AFF;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .pick-btn:hover {
+      background: #0056CC;
+    }
+
+    select {
+      width: 100%;
+      padding: 15px 18px;
+      border: 2px solid transparent;
+      border-radius: 12px;
+      font-size: 16px;
+      background: white;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+      outline: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    select:focus {
+      border-color: #007AFF;
+      box-shadow: 0 4px 20px rgba(0, 122, 255, 0.2);
+    }
+
+    /* 按钮组 */
+    .button-group {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+      width: 100%;
+    }
+
+    .primary-btn, .secondary-btn {
+      flex: 1;
+      padding: 15px 20px;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .primary-btn {
+      background: linear-gradient(45deg, #007AFF, #5856D6);
+      color: white;
+      box-shadow: 0 4px 15px rgba(0, 122, 255, 0.3);
+    }
+
+    .primary-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(0, 122, 255, 0.4);
+    }
+
+    .secondary-btn {
+      background: #f8f9fa;
+      color: #333;
+      border: 2px solid #e9ecef;
+    }
+
+    .secondary-btn:hover {
+      background: #e9ecef;
+      transform: translateY(-1px);
+    }
+
+    .hint-text {
+      font-size: 12px;
+      color: #666;
+      margin-top: 10px;
+      font-style: italic;
+    }
+
+    /* 路线详情样式 */
+    .route-details {
+      max-height: 400px;
+      overflow-y: auto;
+    }
+
+    .route-step {
+      padding: 15px;
+      margin-bottom: 10px;
+      background: #f8f9fa;
+      border-radius: 10px;
+      border-left: 4px solid #007AFF;
+    }
+
+    .route-step.transfer {
+      border-left-color: #ff6b6b;
+      background: #fff5f5;
+    }
+
+    /* 消息容器 */
+    .message-container {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 2000;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .message {
+      padding: 15px 20px;
+      border-radius: 10px;
+      color: white;
+      font-weight: 500;
+      max-width: 300px;
+      animation: slideIn 0.3s ease;
+    }
+
+    .message.success {
+      background: #28a745;
+    }
+
+    .message.error {
+      background: #dc3545;
+    }
+
+    .message.info {
+      background: #007AFF;
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    /* 模态对话框 */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(5px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .modal-content {
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      max-width: 500px;
+      width: 90%;
+      max-height: 80vh;
+      overflow: hidden;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 25px 30px;
+      border-bottom: 1px solid #e9ecef;
+      background: #f8f9fa;
+    }
+
+    .modal-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .modal-close-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      color: #666;
+    }
+
+    .modal-close-btn:hover {
+      background: #e9ecef;
+      color: #333;
+    }
+
+    .modal-body {
+      padding: 30px;
+      max-height: 400px;
+      overflow-y: auto;
+    }
+
+    .modal-footer {
+      padding: 20px 30px;
+      border-top: 1px solid #e9ecef;
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+    }
+
+    /* 自动完成容器 */
+    .autocomplete-container {
+      position: absolute;
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      max-height: 200px;
+      overflow-y: auto;
+      z-index: 1000;
+    }
+
+    .autocomplete-item {
+      padding: 12px 16px;
+      cursor: pointer;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .autocomplete-item:hover {
+      background: #f8f9fa;
+    }
+
+    .autocomplete-item.selected {
+      background: #007AFF;
+      color: white;
+    }
+
+    /* 响应式设计 */
+    @media (max-width: 768px) {
+      .main-content {
+        flex-direction: column;
+      }
+
+      .metro-map-container {
+        height: 60vh;
+      }
+
+      .control-panel {
+        width: 100%;
+        height: 40vh;
+        padding: 20px;
+      }
+
+      .left-controls {
+        top: 10px;
+        left: 10px;
+      }
+
+      .legend-container {
+        max-width: 200px;
+        padding: 10px;
+      }
+
+      .legend-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>上海地铁换乘系统</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<!-- 加载提示 -->
+<div id="loading-overlay" class="loading-overlay">
+  <div class="loading-spinner"></div>
+  <p>正在加载地铁数据...</p>
+</div>
+
+<!-- 主应用容器 -->
+<div id="app-container" class="app-container hidden">
+  <!-- 顶部标题栏 -->
+  <header class="app-header">
+    <div class="header-content">
+      <h1 class="app-title">上海地铁换乘系统</h1>
+      <p class="app-subtitle">Shanghai Metro Transfer System </p>
+    </div>
+    <div class="header-actions">
+      <button id="save-btn" class="header-btn" title="保存配置">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+          <polyline points="17,21 17,13 7,13 7,21"/>
+          <polyline points="7,3 7,8 15,8"/>
+        </svg>
+        保存
+      </button>
+      <button id="reset-view-btn" class="header-btn" title="重置视图">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+          <path d="M3 3v5h5"/>
+        </svg>
+        重置
+      </button>
+    </div>
+  </header>
+
+  <!-- 主内容区域 -->
+  <main class="main-content">
+    <!-- 地铁地图容器 -->
+    <div class="metro-map-container">
+      <svg id="metro-map" class="metro-map" viewBox="0 0 2000 2000">
+        <defs>
+          <!-- 站点阴影滤镜 -->
+          <filter id="station-shadow" x="-50%" y="-50%" width="200%" height="200%">
+            <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="rgba(0,0,0,0.3)"/>
+          </filter>
+          <!-- 站点悬停滤镜 -->
+          <filter id="station-hover" x="-50%" y="-50%" width="200%" height="200%">
+            <feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#007AFF" flood-opacity="0.6"/>
+          </filter>
+          <!-- 线路发光效果 -->
+          <filter id="line-glow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+            <feMerge>
+              <feMergeNode in="coloredBlur"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+        </defs>
+        <!-- 主要地图内容组，用于缩放和平移 -->
+        <g id="map-content" class="map-content">
+          <!-- 地铁线路组 -->
+          <g id="metro-lines" class="metro-lines"></g>
+          <!-- 地铁站点组 -->
+          <g id="metro-stations" class="metro-stations"></g>
+          <!-- 站点标签组 -->
+          <g id="station-labels" class="station-labels"></g>
+        </g>
+      </svg>
+
+      <!-- 左侧控制栏 -->
+      <div class="left-controls">
+        <!-- 缩放控制 -->
+        <div class="zoom-controls">
+          <button id="zoom-in-btn" class="zoom-btn" title="放大">+</button>
+          <button id="zoom-out-btn" class="zoom-btn" title="缩小">-</button>
+        </div>
+
+        <!-- 图例容器 -->
+        <div class="legend-container">
+          <div class="legend-title">线路图例</div>
+          <div id="legend-content" class="legend-grid">
+            <!-- 图例项将通过JavaScript动态生成 -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 右侧控制面板 -->
+    <aside class="control-panel">
+      <!-- 路线查询区域 -->
+      <section class="panel-section">
+        <h3 class="section-title">路线查询</h3>
+
+        <div class="input-group">
+          <label for="start-station">起始站</label>
+          <div class="input-with-btn">
+            <input type="text" id="start-station" placeholder="请输入起始站名称" autocomplete="off">
+            <button id="pick-start-btn" class="pick-btn" title="在地图上选择起始站">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="end-station">目的站</label>
+          <div class="input-with-btn">
+            <input type="text" id="end-station" placeholder="请输入目的站名称" autocomplete="off">
+            <button id="pick-end-btn" class="pick-btn" title="在地图上选择目的站">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="search-mode">寻路模式</label>
+          <select id="search-mode">
+            <option value="count">站点数优先</option>
+            <option value="distance">距离优先</option>
+            <option value="transfer">换乘次数优先</option>
+          </select>
+        </div>
+
+        <div class="button-group">
+          <button id="search-btn" class="primary-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"/>
+              <path d="m21 21-4.35-4.35"/>
+            </svg>
+            查询路线
+          </button>
+          <button id="clear-path-btn" class="secondary-btn">清除路线</button>
+        </div>
+
+        <div style="margin-top: 15px;">
+          <label>
+            <input type="checkbox" id="dim-others-checkbox" checked style="margin-right: 8px;">
+            变暗其他元素以凸显路径
+          </label>
+        </div>
+
+        <p class="hint-text">💡 点击右侧按钮可在地图上直接选择站点</p>
+      </section>
+
+      <!-- 管理功能区域 -->
+      <section class="panel-section">
+        <h3 class="section-title">地铁管理</h3>
+
+        <div class="button-group">
+          <button id="add-station-btn" class="secondary-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="12" y1="8" x2="12" y2="16"/>
+              <line x1="8" y1="12" x2="16" y2="12"/>
+            </svg>
+            添加站点
+          </button>
+          <button id="add-line-btn" class="secondary-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="5" y1="12" x2="19" y2="12"/>
+              <circle cx="12" cy="12" r="7"/>
+            </svg>
+            添加线路
+          </button>
+        </div>
+        <div class="button-group">
+          <button id="add-connection-btn" class="secondary-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M6 9l6 6 6-6"/>
+            </svg>
+            连接站点
+          </button>
+        </div>
+      </section>
+
+      <!-- 路线信息显示区域 -->
+      <section id="route-info" class="panel-section hidden">
+        <h3 class="section-title">换乘指南</h3>
+        <div id="route-details" class="route-details"></div>
+      </section>
+    </aside>
+  </main>
+</div>
+
+<!-- 模态对话框容器 -->
+<div id="modal-overlay" class="modal-overlay hidden">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3 id="modal-title" class="modal-title"></h3>
+      <button id="modal-close-btn" class="modal-close-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+    <div id="modal-body" class="modal-body"></div>
+    <div id="modal-footer" class="modal-footer"></div>
+  </div>
+</div>
+
+<!-- 消息提示容器 -->
+<div id="message-container" class="message-container"></div>
+
+<!-- 站点输入提示容器 -->
+<div id="autocomplete-container" class="autocomplete-container hidden"></div>
+
+<script>
+  /**
+   * 消息提示管理器
+   */
+  class MessageManager {
+    constructor() {
+      this.container = document.getElementById('message-container');
+    }
+
+    show(message, type = 'info', duration = 3000) {
+      const messageEl = document.createElement('div');
+      messageEl.className = `message ${type}`;
+      messageEl.textContent = message;
+
+      this.container.appendChild(messageEl);
+
+      setTimeout(() => {
+        if (messageEl.parentNode) {
+          messageEl.parentNode.removeChild(messageEl);
+        }
+      }, duration);
+    }
+
+    success(message) {
+      this.show(message, 'success');
+    }
+
+    error(message) {
+      this.show(message, 'error');
+    }
+
+    info(message) {
+      this.show(message, 'info');
+    }
+  }
+
+  /**
+   * 数据加载器
+   */
+  class MetroDataLoader {
+    constructor() {
+      this.metroData = null;
+      this.lineColors = [
+        { name: "1号线", color: "#E6002B" },
+        { name: "2号线", color: "#8CC220" },
+        { name: "3号线", color: "#FBD600" },
+        { name: "4号线", color: "#451D84" },
+        { name: "5号线", color: "#944C9A" },
+        { name: "6号线", color: "#D30068" },
+        { name: "7号线", color: "#ED6E00" },
+        { name: "8号线", color: "#0094D9" },
+        { name: "9号线", color: "#87C9EC" },
+        { name: "10号线", color: "#C6AFD3" },
+        { name: "11号线", color: "#871A2B" },
+        { name: "12号线", color: "#007A60" },
+        { name: "13号线", color: "#E899C0" },
+        { name: "14号线", color: "#7F7F4B" },
+        { name: "15号线", color: "#C4AF8B" },
+        { name: "16号线", color: "#98D1C0" },
+        { name: "17号线", color: "#B7766C" },
+        { name: "18号线", color: "#C09453" }
+      ];
+    }
+
+    async loadData() {
+      try {
+        console.log('开始从JSON文件加载地铁数据...');
+
+        // 加载JSON数据
+        const response = await fetch('./data/metro-data.json');
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        this.metroData = await response.json();
+        console.log('JSON数据加载成功:', this.metroData);
+
+        // 验证数据结构
+        if (!this.metroData.stations || !this.metroData.connections) {
+          throw new Error('JSON数据格式不正确：缺少stations或connections字段');
+        }
+
+        console.log(`加载完成: ${this.metroData.stations.length} 个站点, ${this.metroData.connections.length} 个连接`);
+        return this.metroData;
+
+      } catch (error) {
+        console.error('加载地铁数据失败:', error);
+
+        // 如果从JSON文件加载失败，使用最小备用数据
+        console.log('使用最小备用数据...');
+        return this.getMinimalFallbackData();
+      }
+    }
+
+    getMinimalFallbackData() {
+      // 最小备用数据，仅用于演示基本功能
+      return {
+        stations: [
+          { name: "人民广场", pos: [1000, 900], type: "transfer" },
+          { name: "南京东路", pos: [1100, 900], type: "normal" },
+          { name: "静安寺", pos: [900, 900], type: "transfer" },
+          { name: "陆家嘴", pos: [1200, 900], type: "normal" },
+          { name: "中山公园", pos: [800, 900], type: "normal" },
+          { name: "虹桥机场", pos: [700, 900], type: "terminal" },
+          { name: "上海火车站", pos: [1000, 800], type: "transfer" },
+          { name: "曲阜路", pos: [1000, 700], type: "normal" }
+        ],
+        connections: [
+          { from: "虹桥机场", to: "中山公园", line: "2号线" },
+          { from: "中山公园", to: "静安寺", line: "2号线" },
+          { from: "静安寺", to: "人民广场", line: "2号线" },
+          { from: "人民广场", to: "南京东路", line: "2号线" },
+          { from: "南京东路", to: "陆家嘴", line: "2号线" },
+          { from: "人民广场", to: "上海火车站", line: "1号线" },
+          { from: "上海火车站", to: "曲阜路", line: "3号线" }
+        ]
+      };
+    }
+
+    getLineColor(lineName) {
+      const lineInfo = this.lineColors.find(line => line.name === lineName);
+      return lineInfo ? lineInfo.color : '#666666';
+    }
+
+    getLines() {
+      return this.lineColors;
+    }
+
+    getData() {
+      return this.metroData;
+    }
+  }
+
+  /**
+   * 数据管理器
+   */
+  class MetroDataManager {
+    constructor(dataLoader) {
+      this.dataLoader = dataLoader;
+      this.lines = new Map();
+      this.stations = new Map();
+      this.connections = new Map();
+      this.graph = new Map(); // 用于路径查找的图结构
+    }
+
+    async init() {
+      console.log('初始化数据管理器...');
+
+      // 加载数据
+      const data = await this.dataLoader.loadData();
+      console.log('数据加载结果:', data);
+
+      // 处理线路数据
+      this.dataLoader.getLines().forEach(line => {
+        this.lines.set(line.name, {
+          name: line.name,
+          color: line.color,
+          id: `line-${line.name}`
+        });
+      });
+
+      // 处理站点数据
+      if (data.stations && Array.isArray(data.stations)) {
+        data.stations.forEach(station => {
+          if (station.name && station.pos && Array.isArray(station.pos)) {
+            this.stations.set(station.name, {
+              name: station.name,
+              graphPosition: station.pos,
+              realPosition: [121.4 + Math.random() * 0.2, 31.2 + Math.random() * 0.2],
+              type: station.type || 'normal',
+              tag: 'top',
+              id: `station-${station.name}`
+            });
+            this.graph.set(station.name, new Map());
+          } else {
+            console.warn('站点数据格式错误:', station);
+          }
+        });
+      } else {
+        console.error('stations 数据格式错误或不存在');
+      }
+
+      // 处理连接数据
+      if (data.connections && Array.isArray(data.connections)) {
+        data.connections.forEach(conn => {
+          if (conn.from && conn.to && conn.line) {
+            const id = `${conn.from}-${conn.to}-${conn.line}`;
+            const reverseId = `${conn.to}-${conn.from}-${conn.line}`;
+
+            this.connections.set(id, {
+              from: conn.from,
+              to: conn.to,
+              line: conn.line,
+              via: [],
+              id: id
+            });
+
+            this.connections.set(reverseId, {
+              from: conn.to,
+              to: conn.from,
+              line: conn.line,
+              via: [],
+              id: reverseId
+            });
+
+            // 构建图结构
+            if (!this.graph.has(conn.from)) this.graph.set(conn.from, new Map());
+            if (!this.graph.has(conn.to)) this.graph.set(conn.to, new Map());
+
+            this.graph.get(conn.from).set(conn.to, { line: conn.line, distance: 1 });
+            this.graph.get(conn.to).set(conn.from, { line: conn.line, distance: 1 });
+          } else {
+            console.warn('连接数据格式错误:', conn);
+          }
+        });
+      } else {
+        console.error('connections 数据格式错误或不存在');
+      }
+
+      console.log(`数据初始化完成: ${this.lines.size} 条线路, ${this.stations.size} 个站点, ${this.connections.size} 个连接`);
+    }
+
+    getLines() {
+      return Array.from(this.lines.values());
+    }
+
+    getStations() {
+      return Array.from(this.stations.values());
+    }
+
+    getConnections() {
+      return Array.from(this.connections.values());
+    }
+
+    getLine(name) {
+      return this.lines.get(name);
+    }
+
+    getStation(name) {
+      return this.stations.get(name);
+    }
+
+    hasStation(name) {
+      return this.stations.has(name);
+    }
+
+    hasLine(name) {
+      return this.lines.has(name);
+    }
+
+    getStationNames() {
+      return Array.from(this.stations.keys());
+    }
+
+    getLineNames() {
+      return Array.from(this.lines.keys());
+    }
+
+    getStationConnections(stationName) {
+      return Array.from(this.connections.values())
+              .filter(conn => conn.from === stationName);
+    }
+
+    searchStations(query) {
+      const lowerQuery = query.toLowerCase();
+      return this.getStationNames().filter(name =>
+              name.toLowerCase().includes(lowerQuery)
+      );
+    }
+
+    calculateDistance(pos1, pos2) {
+      const dx = pos1[0] - pos2[0];
+      const dy = pos1[1] - pos2[1];
+      return Math.sqrt(dx * dx + dy * dy) * 111;
+    }
+
+    // 添加站点
+    addStation(name, position, type = 'normal') {
+      if (this.hasStation(name)) {
+        throw new Error(`站点 ${name} 已存在`);
+      }
+
+      const station = {
+        name: name,
+        graphPosition: position,
+        realPosition: [121.4 + Math.random() * 0.2, 31.2 + Math.random() * 0.2],
+        type: type,
+        tag: 'top',
+        id: `station-${name}`
+      };
+
+      this.stations.set(name, station);
+      this.graph.set(name, new Map());
+      return station;
+    }
+
+    // 添加连接
+    addConnection(from, to, line) {
+      if (!this.hasStation(from) || !this.hasStation(to)) {
+        throw new Error('起始站或目标站不存在');
+      }
+
+      const id = `${from}-${to}-${line}`;
+      const reverseId = `${to}-${from}-${line}`;
+
+      const connection = {
+        from: from,
+        to: to,
+        line: line,
+        via: [],
+        id: id
+      };
+
+      const reverseConnection = {
+        from: to,
+        to: from,
+        line: line,
+        via: [],
+        id: reverseId
+      };
+
+      this.connections.set(id, connection);
+      this.connections.set(reverseId, reverseConnection);
+
+      // 更新图结构
+      this.graph.get(from).set(to, { line: line, distance: 1 });
+      this.graph.get(to).set(from, { line: line, distance: 1 });
+
+      return connection;
+    }
+
+    // 查找路径
+    findPath(startStation, endStation, mode = 'count') {
+      if (!this.hasStation(startStation) || !this.hasStation(endStation)) {
+        throw new Error('起始站或目标站不存在');
+      }
+
+      if (startStation === endStation) {
+        return {
+          path: [startStation],
+          totalStations: 1,
+          totalDistance: 0,
+          transfers: 0,
+          routes: []
+        };
+      }
+
+      return this.dijkstraPath(startStation, endStation, mode);
+    }
+
+    dijkstraPath(start, end, mode) {
+      const distances = new Map();
+      const previous = new Map();
+      const visited = new Set();
+      const queue = [];
+
+      // 初始化距离
+      for (let station of this.graph.keys()) {
+        distances.set(station, Infinity);
+        previous.set(station, null);
+      }
+      distances.set(start, 0);
+      queue.push({ station: start, distance: 0 });
+
+      while (queue.length > 0) {
+        // 按距离排序
+        queue.sort((a, b) => a.distance - b.distance);
+        const current = queue.shift();
+
+        if (visited.has(current.station)) continue;
+        visited.add(current.station);
+
+        if (current.station === end) break;
+
+        const neighbors = this.graph.get(current.station);
+        if (!neighbors) continue;
+
+        for (let [neighbor, connection] of neighbors) {
+          if (visited.has(neighbor)) continue;
+
+          let weight = 1; // 默认权重
+          if (mode === 'distance') {
+            // 如果有位置信息，使用实际距离
+            const currentPos = this.getStation(current.station).graphPosition;
+            const neighborPos = this.getStation(neighbor).graphPosition;
+            weight = this.calculateDistance(currentPos, neighborPos) / 1000; // 转换为公里
+          }
+
+          const distance = distances.get(current.station) + weight;
+
+          if (distance < distances.get(neighbor)) {
+            distances.set(neighbor, distance);
+            previous.set(neighbor, { station: current.station, line: connection.line });
+            queue.push({ station: neighbor, distance: distance });
+          }
+        }
+      }
+
+      // 重构路径
+      const path = [];
+      const routes = [];
+      let currentStation = end;
+      let currentLine = null;
+      let currentSegment = [];
+
+      while (currentStation !== null) {
+        path.unshift(currentStation);
+        const prev = previous.get(currentStation);
+
+        if (prev) {
+          if (currentLine && currentLine !== prev.line) {
+            // 换乘发生
+            routes.unshift({
+              line: currentLine,
+              stations: [...currentSegment],
+              from: currentSegment[0],
+              to: currentSegment[currentSegment.length - 1]
+            });
+            currentSegment = [prev.station];
+          } else if (!currentLine) {
+            currentSegment = [prev.station];
+          } else {
+            currentSegment.unshift(prev.station);
+          }
+          currentLine = prev.line;
+        }
+
+        currentStation = prev ? prev.station : null;
+      }
+
+      if (currentSegment.length > 0) {
+        currentSegment.push(path[path.length - 1]);
+        routes.unshift({
+          line: currentLine,
+          stations: currentSegment,
+          from: currentSegment[0],
+          to: currentSegment[currentSegment.length - 1]
+        });
+      }
+
+      return {
+        path: path,
+        totalStations: path.length,
+        totalDistance: distances.get(end),
+        transfers: routes.length - 1,
+        routes: routes
+      };
+    }
+  }
+
+  /**
+   * 地铁地图渲染器 - 整合了简化版的高亮逻辑
+   */
+  class MetroMapRenderer {
+    constructor(svgElement, dataManager) {
+      this.svg = svgElement;
+      this.dataManager = dataManager;
+      this.mapContent = svgElement.querySelector('#map-content');
+      this.linesGroup = svgElement.querySelector('#metro-lines');
+      this.stationsGroup = svgElement.querySelector('#metro-stations');
+      this.labelsGroup = svgElement.querySelector('#station-labels');
+
+      // 缩放和平移相关
+      this.currentZoom = 1;
+      this.currentTranslate = [0, 0];
+      this.isDragging = false;
+      this.lastMousePos = [0, 0];
+
+      // 缩放限制
+      this.minZoom = 0.3;
+      this.maxZoom = 3;
+
+      // 拖拽敏感度优化
+      this.dragSensitivity = 2.5; // 增加拖拽幅度
+
+      // 高亮路径
+      this.highlightedPath = null;
+
+      // 防抖定时器
+      this.hoverTimeout = null;
+
+      // 调试模式
+      this.debugMode = true;
+
+      // 连接映射 - 从简化版本移植
+      this.connectionElements = new Map(); // 连接键 -> DOM元素
+    }
+
+    debug(...args) {
+      if (this.debugMode) {
+        console.log('[MetroMapRenderer]', ...args);
+      }
+    }
+
+    renderMap() {
+      console.log('开始渲染地图...');
+      this.clearAll();
+      this.renderLines();
+      this.renderStations();
+      this.renderLabels();
+      this.renderLegend();
+      this.initZoomAndPan();
+      console.log('地图渲染完成');
+    }
+
+    clearAll() {
+      this.linesGroup.innerHTML = '';
+      this.stationsGroup.innerHTML = '';
+      this.labelsGroup.innerHTML = '';
+      this.connectionElements.clear();
+    }
+
+    renderLines() {
+      console.log('渲染地铁线路...');
+      const connections = this.dataManager.getConnections();
+      const rendered = new Set();
+
+      connections.forEach(conn => {
+        const key = [conn.from, conn.to, conn.line].sort().join('-');
+        if (rendered.has(key)) return;
+        rendered.add(key);
+
+        const fromStation = this.dataManager.getStation(conn.from);
+        const toStation = this.dataManager.getStation(conn.to);
+        const line = this.dataManager.getLine(conn.line);
+
+        if (!fromStation || !toStation || !line) return;
+
+        // 创建路径元素
+        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        const pathData = `M ${fromStation.graphPosition[0]} ${fromStation.graphPosition[1]} L ${toStation.graphPosition[0]} ${toStation.graphPosition[1]}`;
+
+        path.setAttribute('d', pathData);
+        path.setAttribute('stroke', line.color);
+        path.setAttribute('stroke-width', '8');
+        path.setAttribute('stroke-linecap', 'round');
+        path.setAttribute('fill', 'none');
+        path.classList.add('metro-line');
+
+        // 设置数据属性
+        path.dataset.line = conn.line;
+        path.dataset.from = conn.from;
+        path.dataset.to = conn.to;
+
+        // 建立连接映射 - 使用多个键来确保能找到
+        const connectionKeys = [
+          `${conn.from}-${conn.to}-${conn.line}`,
+          `${conn.to}-${conn.from}-${conn.line}`,
+          key // 排序后的键
+        ];
+
+        connectionKeys.forEach(ck => {
+          this.connectionElements.set(ck, path);
+        });
+
+        this.linesGroup.appendChild(path);
+      });
+
+      this.debug(`线路渲染完成，总计 ${rendered.size} 条线路，连接映射大小: ${this.connectionElements.size}`);
+    }
+
+    renderStations() {
+      console.log('渲染地铁站点...');
+      const stations = this.dataManager.getStations();
+
+      stations.forEach(station => {
+        const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        circle.setAttribute('cx', station.graphPosition[0]);
+        circle.setAttribute('cy', station.graphPosition[1]);
+        circle.setAttribute('r', '8');
+        circle.setAttribute('fill', 'white');
+        circle.setAttribute('stroke', '#333');
+        circle.setAttribute('stroke-width', '3');
+        circle.classList.add('metro-station');
+        circle.dataset.station = station.name;
+
+        // 根据站点类型设置不同样式
+        if (station.type === 'transfer') {
+          circle.setAttribute('stroke', '#ff6b6b');
+          circle.setAttribute('stroke-width', '4');
+        } else if (station.type === 'terminal') {
+          circle.setAttribute('stroke', '#007AFF');
+          circle.setAttribute('stroke-width', '4');
+        }
+
+        // 优化的悬停事件处理 - 防止抖动
+        circle.addEventListener('mouseenter', (e) => {
+          // 清除之前的定时器
+          if (this.hoverTimeout) {
+            clearTimeout(this.hoverTimeout);
+          }
+
+          // 延迟执行悬停效果，避免快速移动时的抖动
+          this.hoverTimeout = setTimeout(() => {
+            if (!circle.classList.contains('selected')) {
+              circle.setAttribute('filter', 'url(#station-hover)');
+              circle.setAttribute('stroke', '#007AFF');
+            }
+          }, 50);
+        });
+
+        circle.addEventListener('mouseleave', (e) => {
+          // 清除定时器
+          if (this.hoverTimeout) {
+            clearTimeout(this.hoverTimeout);
+          }
+
+          if (!circle.classList.contains('selected')) {
+            circle.setAttribute('filter', 'url(#station-shadow)');
+            circle.setAttribute('stroke', station.type === 'transfer' ? '#ff6b6b' :
+                    station.type === 'terminal' ? '#007AFF' : '#333');
+          }
+        });
+
+        // 添加点击事件
+        circle.addEventListener('click', (e) => {
+          e.stopPropagation();
+          this.svg.dispatchEvent(new CustomEvent('stationClick', {
+            detail: { station: station }
+          }));
+        });
+
+        this.stationsGroup.appendChild(circle);
+      });
+    }
+
+    renderLabels() {
+      console.log('渲染标签...');
+      const stations = this.dataManager.getStations();
+
+      stations.forEach(station => {
+        const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        text.setAttribute('x', station.graphPosition[0]);
+        text.setAttribute('y', station.graphPosition[1] - 15);
+        text.setAttribute('text-anchor', 'middle');
+        text.setAttribute('font-size', '11');
+        text.setAttribute('font-family', 'Arial, sans-serif');
+        text.setAttribute('fill', '#333');
+        text.classList.add('station-label');
+        text.dataset.station = station.name;
+        text.textContent = station.name;
+
+        this.labelsGroup.appendChild(text);
+      });
+    }
+
+    // 新的图例渲染方法 - 渲染到左侧容器
+    renderLegend() {
+      console.log('渲染图例...');
+      const legendContent = document.getElementById('legend-content');
+      if (!legendContent) return;
+
+      const lines = this.dataManager.getLines();
+      legendContent.innerHTML = '';
+
+      lines.forEach(line => {
+        const legendItem = document.createElement('div');
+        legendItem.className = 'legend-item-new';
+        legendItem.dataset.line = line.name;
+
+        legendItem.innerHTML = `
+          <div class="legend-color" style="background-color: ${line.color}"></div>
+          <span class="legend-label">${line.name}</span>
+        `;
+
+        // 添加点击事件
+        legendItem.addEventListener('click', () => {
+          this.toggleLineVisibility(line.name);
+        });
+
+        legendContent.appendChild(legendItem);
+      });
+    }
+
+    toggleLineVisibility(lineName) {
+      // 这里可以添加线路显示/隐藏的逻辑
+      console.log('切换线路可见性:', lineName);
+    }
+
+    initZoomAndPan() {
+      console.log('初始化缩放和平移功能...');
+
+      this.animationId = null;
+      this.pendingUpdate = false;
+
+      // 鼠标滚轮缩放
+      this.svg.addEventListener('wheel', (e) => {
+        e.preventDefault();
+
+        const rect = this.svg.getBoundingClientRect();
+        const mouseX = e.clientX - rect.left;
+        const mouseY = e.clientY - rect.top;
+
+        const zoomFactor = e.deltaY > 0 ? 0.9 : 1.1;
+        const newZoom = Math.max(this.minZoom, Math.min(this.maxZoom, this.currentZoom * zoomFactor));
+
+        if (newZoom !== this.currentZoom) {
+          this.currentZoom = newZoom;
+          this.scheduleUpdate();
+        }
+      });
+
+      // 鼠标拖拽平移 - 优化拖拽手感
+      this.svg.addEventListener('mousedown', (e) => {
+        if (e.button === 0) {
+          this.isDragging = true;
+          this.lastMousePos = [e.clientX, e.clientY];
+          this.svg.style.cursor = 'grabbing';
+          e.preventDefault();
+        }
+      });
+
+      document.addEventListener('mousemove', (e) => {
+        if (this.isDragging) {
+          const deltaX = e.clientX - this.lastMousePos[0];
+          const deltaY = e.clientY - this.lastMousePos[1];
+
+          // 增加拖拽幅度，改善手感
+          this.currentTranslate[0] += deltaX * this.dragSensitivity / this.currentZoom;
+          this.currentTranslate[1] += deltaY * this.dragSensitivity / this.currentZoom;
+
+          this.lastMousePos = [e.clientX, e.clientY];
+          this.scheduleUpdate();
+        }
+      });
+
+      document.addEventListener('mouseup', () => {
+        if (this.isDragging) {
+          this.isDragging = false;
+          this.svg.style.cursor = 'grab';
+        }
+      });
+
+      // 缩放按钮
+      const zoomInBtn = document.getElementById('zoom-in-btn');
+      const zoomOutBtn = document.getElementById('zoom-out-btn');
+      const resetViewBtn = document.getElementById('reset-view-btn');
+
+      if (zoomInBtn) {
+        zoomInBtn.addEventListener('click', () => {
+          this.currentZoom = Math.min(this.maxZoom, this.currentZoom * 1.2);
+          this.scheduleUpdate();
+        });
+      }
+
+      if (zoomOutBtn) {
+        zoomOutBtn.addEventListener('click', () => {
+          this.currentZoom = Math.max(this.minZoom, this.currentZoom / 1.2);
+          this.scheduleUpdate();
+        });
+      }
+
+      if (resetViewBtn) {
+        resetViewBtn.addEventListener('click', () => {
+          this.resetView();
+        });
+      }
+
+      this.svg.style.cursor = 'grab';
+    }
+
+    scheduleUpdate() {
+      if (!this.pendingUpdate) {
+        this.pendingUpdate = true;
+        this.animationId = requestAnimationFrame(() => {
+          this.updateTransform();
+          this.pendingUpdate = false;
+        });
+      }
+    }
+
+    updateTransform() {
+      if (this.mapContent) {
+        const transform = `translate(${this.currentTranslate[0]}, ${this.currentTranslate[1]}) scale(${this.currentZoom})`;
+        this.mapContent.setAttribute('transform', transform);
+      }
+    }
+
+    resetView() {
+      this.currentZoom = 1;
+      this.currentTranslate = [0, 0];
+      this.scheduleUpdate();
+      console.log('视图已重置');
+    }
+
+    // 从简化版本移植的新高亮方法
+    /**
+     * 简化的路径高亮 - 支持可选的变暗效果
+     */
+    highlightPath(pathResult, dimOthers = true) {
+      this.debug('\n=== 开始简化路径高亮 ===');
+      this.debug('路径结果:', pathResult);
+      this.debug('是否变暗其他元素:', dimOthers);
+
+      // 清除之前的高亮
+      this.clearPathHighlight();
+
+      if (!pathResult || !pathResult.routes || pathResult.routes.length === 0) {
+        this.debug('路径为空，跳过高亮');
+        return;
+      }
+
+      const { path, routes } = pathResult;
+
+      // 如果需要变暗其他元素，先应用变暗效果
+      if (dimOthers) {
+        this.dimAllOtherElements();
+      }
+
+      // 高亮路径中的线路
+      let highlightedCount = 0;
+      routes.forEach((route, index) => {
+        this.debug(`\n处理路线 ${index + 1}/${routes.length}:`);
+        this.debug('路线:', route);
+
+        for (let i = 0; i < route.stations.length - 1; i++) {
+          const connection = {
+            from: route.stations[i],
+            to: route.stations[i + 1],
+            line: route.line
+          };
+
+          const success = this.highlightConnection(connection);
+          if (success) {
+            highlightedCount++;
+            this.debug(`✓ 连接高亮成功: ${connection.from} -> ${connection.to} (${connection.line})`);
+          } else {
+            this.debug(`✗ 连接高亮失败: ${connection.from} -> ${connection.to} (${connection.line})`);
+            this.debugConnectionFailure(connection);
+          }
+        }
+      });
+
+      // 高亮路径中的站点
+      if (path && path.length > 0) {
+        path.forEach(stationName => {
+          this.highlightStation(stationName);
+        });
+        this.debug(`高亮了 ${path.length} 个站点: ${path.join(', ')}`);
+
+        // 高亮起始和终点站点
+        this.highlightSpecialStation(path[0], '#28a745'); // 绿色表示起点
+        this.highlightSpecialStation(path[path.length - 1], '#dc3545'); // 红色表示终点
+      }
+
+      this.debug(`\n路径高亮完成: ${highlightedCount} 个连接成功高亮`);
+      this.debug('=== 简化路径高亮结束 ===\n');
+    }
+
+    /**
+     * 变暗所有其他元素
+     */
+    dimAllOtherElements() {
+      this.debug('应用变暗效果到所有元素...');
+
+      // 变暗所有线路
+      const lines = this.linesGroup.querySelectorAll('.metro-line');
+      lines.forEach(line => {
+        line.classList.add('dimmed');
+      });
+
+      // 变暗所有站点
+      const stations = this.stationsGroup.querySelectorAll('.metro-station');
+      stations.forEach(station => {
+        station.classList.add('dimmed');
+      });
+
+      // 变暗所有标签
+      const labels = this.labelsGroup.querySelectorAll('.station-label');
+      labels.forEach(label => {
+        label.classList.add('dimmed');
+      });
+
+      this.debug(`变暗了 ${lines.length} 条线路, ${stations.length} 个站点, ${labels.length} 个标签`);
+    }
+
+    /**
+     * 高亮单个连接
+     */
+    highlightConnection(connection) {
+      const { from, to, line } = connection;
+
+      // 尝试多个可能的键
+      const possibleKeys = [
+        `${from}-${to}-${line}`,
+        `${to}-${from}-${line}`,
+        [from, to, line].sort().join('-')
+      ];
+
+      this.debug(`查找连接键: ${possibleKeys.join(', ')}`);
+
+      for (const key of possibleKeys) {
+        const element = this.connectionElements.get(key);
+        if (element) {
+          this.debug(`✓ 找到元素，使用键: ${key}`);
+          this.applyHighlight(element);
+          return true;
+        }
+      }
+
+      // 如果直接查找失败，尝试DOM遍历
+      this.debug('直接查找失败，尝试DOM遍历...');
+      const lines = this.linesGroup.querySelectorAll('.metro-line');
+
+      for (const lineElement of lines) {
+        const elementData = lineElement.dataset;
+
+        // 检查是否匹配
+        const matches = (
+                (elementData.from === from && elementData.to === to && elementData.line === line) ||
+                (elementData.from === to && elementData.to === from && elementData.line === line)
+        );
+
+        if (matches) {
+          this.debug(`✓ DOM遍历找到匹配元素`);
+          this.applyHighlight(lineElement);
+          return true;
+        }
+      }
+
+      return false;
+    }
+
+    /**
+     * 应用高亮效果
+     */
+    applyHighlight(element) {
+      element.classList.add('path-highlight');
+    }
+
+    /**
+     * 高亮站点
+     */
+    highlightStation(stationName) {
+      const stations = this.stationsGroup.querySelectorAll('.metro-station');
+      const labels = this.labelsGroup.querySelectorAll('.station-label');
+
+      stations.forEach(station => {
+        if (station.dataset.station === stationName) {
+          station.classList.add('path-highlight');
+        }
+      });
+
+      labels.forEach(label => {
+        if (label.dataset.station === stationName) {
+          label.classList.add('path-highlight');
+        }
+      });
+    }
+
+    /**
+     * 高亮特殊站点（起点、终点）
+     */
+    highlightSpecialStation(stationName, color) {
+      const stationElements = this.stationsGroup.querySelectorAll('.metro-station');
+      stationElements.forEach(station => {
+        if (station.dataset.station === stationName) {
+          station.setAttribute('fill', color);
+          station.setAttribute('r', '12');
+        }
+      });
+    }
+
+    /**
+     * 清除路径高亮
+     */
+    clearPathHighlight() {
+      // 清除线路高亮
+      const highlightedLines = this.linesGroup.querySelectorAll('.path-highlight, .dimmed');
+      highlightedLines.forEach(line => {
+        line.classList.remove('path-highlight', 'dimmed');
+      });
+
+      // 清除站点高亮
+      const highlightedStations = this.stationsGroup.querySelectorAll('.path-highlight, .dimmed');
+      highlightedStations.forEach(station => {
+        station.classList.remove('path-highlight', 'dimmed');
+        station.setAttribute('fill', 'white');
+        station.setAttribute('r', '8');
+      });
+
+      // 清除标签高亮
+      const highlightedLabels = this.labelsGroup.querySelectorAll('.path-highlight, .dimmed');
+      highlightedLabels.forEach(label => {
+        label.classList.remove('path-highlight', 'dimmed');
+      });
+
+      this.debug('已清除所有路径高亮');
+    }
+
+    /**
+     * 调试连接失败
+     */
+    debugConnectionFailure(connection) {
+      this.debug('\n=== 连接匹配失败调试 ===');
+      this.debug('目标连接:', connection);
+
+      this.debug('\n连接映射表中的所有键:');
+      const keys = Array.from(this.connectionElements.keys());
+      keys.forEach((key, index) => {
+        this.debug(`  [${index}] ${key}`);
+      });
+
+      this.debug('\nDOM中的所有线路元素:');
+      const allLines = this.linesGroup.querySelectorAll('.metro-line');
+      allLines.forEach((lineEl, idx) => {
+        this.debug(`  [${idx}] ${lineEl.dataset.from} -> ${lineEl.dataset.to} (${lineEl.dataset.line})`);
+      });
+
+      this.debug('=== 调试结束 ===\n');
+    }
+
+    /**
+     * 获取是否应该变暗其他元素
+     */
+    shouldDimOthers() {
+      const checkbox = document.getElementById('dim-others-checkbox');
+      return checkbox ? checkbox.checked : true;
+    }
+  }
+
+  /**
+   * 模态对话框管理器
+   */
+  class ModalManager {
+    constructor() {
+      this.overlay = document.getElementById('modal-overlay');
+      this.title = document.getElementById('modal-title');
+      this.body = document.getElementById('modal-body');
+      this.footer = document.getElementById('modal-footer');
+      this.closeBtn = document.getElementById('modal-close-btn');
+
+      this.closeBtn.addEventListener('click', () => this.hide());
+      this.overlay.addEventListener('click', (e) => {
+        if (e.target === this.overlay) {
+          this.hide();
+        }
+      });
+    }
+
+    show(title, body, footer = '') {
+      this.title.textContent = title;
+      this.body.innerHTML = body;
+      this.footer.innerHTML = footer;
+      this.overlay.classList.remove('hidden');
+    }
+
+    hide() {
+      this.overlay.classList.add('hidden');
+    }
+  }
+
+  /**
+   * 自动完成管理器
+   */
+  class AutocompleteManager {
+    constructor(dataManager) {
+      this.dataManager = dataManager;
+      this.container = document.getElementById('autocomplete-container');
+      this.currentInput = null;
+      this.suggestions = [];
+      this.selectedIndex = -1;
+    }
+
+    attach(inputElement) {
+      inputElement.addEventListener('input', (e) => {
+        this.handleInput(e.target);
+      });
+
+      inputElement.addEventListener('keydown', (e) => {
+        this.handleKeydown(e);
+      });
+
+      inputElement.addEventListener('blur', (e) => {
+        // 延迟隐藏，允许点击建议项
+        setTimeout(() => this.hide(), 200);
+      });
+    }
+
+    handleInput(input) {
+      this.currentInput = input;
+      const query = input.value.trim();
+
+      if (query.length === 0) {
+        this.hide();
+        return;
+      }
+
+      this.suggestions = this.dataManager.searchStations(query).slice(0, 10);
+      this.selectedIndex = -1;
+      this.show();
+    }
+
+    handleKeydown(e) {
+      if (!this.isVisible()) return;
+
+      switch (e.key) {
+        case 'ArrowDown':
+          e.preventDefault();
+          this.selectedIndex = Math.min(this.selectedIndex + 1, this.suggestions.length - 1);
+          this.updateSelection();
+          break;
+        case 'ArrowUp':
+          e.preventDefault();
+          this.selectedIndex = Math.max(this.selectedIndex - 1, -1);
+          this.updateSelection();
+          break;
+        case 'Enter':
+          e.preventDefault();
+          if (this.selectedIndex >= 0) {
+            this.selectSuggestion(this.suggestions[this.selectedIndex]);
+          }
+          break;
+        case 'Escape':
+          this.hide();
+          break;
+      }
+    }
+
+    show() {
+      if (this.suggestions.length === 0) {
+        this.hide();
+        return;
+      }
+
+      this.container.innerHTML = '';
+
+      this.suggestions.forEach((suggestion, index) => {
+        const item = document.createElement('div');
+        item.className = 'autocomplete-item';
+        item.textContent = suggestion;
+        item.addEventListener('click', () => {
+          this.selectSuggestion(suggestion);
+        });
+
+        if (index === this.selectedIndex) {
+          item.classList.add('selected');
+        }
+
+        this.container.appendChild(item);
+      });
+
+      // 定位容器
+      const rect = this.currentInput.getBoundingClientRect();
+      this.container.style.top = `${rect.bottom + window.scrollY}px`;
+      this.container.style.left = `${rect.left + window.scrollX}px`;
+      this.container.style.width = `${rect.width}px`;
+
+      this.container.classList.remove('hidden');
+    }
+
+    hide() {
+      this.container.classList.add('hidden');
+    }
+
+    isVisible() {
+      return !this.container.classList.contains('hidden');
+    }
+
+    updateSelection() {
+      const items = this.container.querySelectorAll('.autocomplete-item');
+      items.forEach((item, index) => {
+        if (index === this.selectedIndex) {
+          item.classList.add('selected');
+        } else {
+          item.classList.remove('selected');
+        }
+      });
+    }
+
+    selectSuggestion(suggestion) {
+      if (this.currentInput) {
+        this.currentInput.value = suggestion;
+        this.currentInput.dispatchEvent(new Event('change'));
+      }
+      this.hide();
+    }
+  }
+
+  /**
+   * 主应用类
+   */
+  class MetroTransferApp {
+    constructor() {
+      this.dataLoader = new MetroDataLoader();
+      this.dataManager = new MetroDataManager(this.dataLoader);
+      this.renderer = null;
+      this.messageManager = new MessageManager();
+      this.modalManager = new ModalManager();
+      this.autocompleteManager = null;
+
+      // 应用状态
+      this.isPickingStart = false;
+      this.isPickingEnd = false;
+      this.currentPath = null;
+    }
+
+    async init() {
+      console.log('初始化地铁换乘应用...');
+
+      try {
+        // 初始化数据管理器
+        await this.dataManager.init();
+
+        // 初始化渲染器
+        const svg = document.getElementById('metro-map');
+        this.renderer = new MetroMapRenderer(svg, this.dataManager);
+
+        // 初始化自动完成
+        this.autocompleteManager = new AutocompleteManager(this.dataManager);
+
+        // 渲染地图
+        this.renderer.renderMap();
+
+        // 绑定事件
+        this.bindEvents();
+
+        // 隐藏加载提示，显示应用
+        this.showApp();
+
+        // 检查是否使用了备用数据
+        if (this.dataManager.stations.size <= 8) {
+          this.messageManager.error('使用最小演示数据 - 请配置完整的JSON数据文件');
+          console.warn('当前使用最小演示数据，请检查 ./data/metro-data.json 文件');
+        } else {
+          this.messageManager.success('地铁换乘系统加载成功！');
+        }
+
+        console.log('应用初始化完成');
+
+      } catch (error) {
+        console.error('应用初始化失败:', error);
+        this.showError(error.message);
+      }
+    }
+
+    bindEvents() {
+      // 站点选择按钮
+      document.getElementById('pick-start-btn').addEventListener('click', () => {
+        this.startPickingStation('start');
+      });
+
+      document.getElementById('pick-end-btn').addEventListener('click', () => {
+        this.startPickingStation('end');
+      });
+
+      // 路线查询按钮
+      document.getElementById('search-btn').addEventListener('click', () => {
+        this.searchRoute();
+      });
+
+      // 清除路线按钮
+      document.getElementById('clear-path-btn').addEventListener('click', () => {
+        this.clearPath();
+      });
+
+      // 管理功能按钮
+      document.getElementById('add-station-btn').addEventListener('click', () => {
+        this.showAddStationDialog();
+      });
+
+      document.getElementById('add-line-btn').addEventListener('click', () => {
+        this.showAddLineDialog();
+      });
+
+      document.getElementById('add-connection-btn').addEventListener('click', () => {
+        this.showAddConnectionDialog();
+      });
+
+      // 保存按钮
+      document.getElementById('save-btn').addEventListener('click', () => {
+        this.saveConfiguration();
+      });
+
+      // 站点点击事件
+      this.renderer.svg.addEventListener('stationClick', (e) => {
+        this.handleStationClick(e.detail.station);
+      });
+
+      // 自动完成
+      this.autocompleteManager.attach(document.getElementById('start-station'));
+      this.autocompleteManager.attach(document.getElementById('end-station'));
+
+      console.log('事件绑定完成');
+    }
+
+    startPickingStation(type) {
+      // 重置之前的状态
+      this.isPickingStart = false;
+      this.isPickingEnd = false;
+      document.getElementById('pick-start-btn').style.background = '#007AFF';
+      document.getElementById('pick-end-btn').style.background = '#007AFF';
+
+      if (type === 'start') {
+        this.isPickingStart = true;
+        this.messageManager.info('请在地图上点击起始站');
+        document.getElementById('pick-start-btn').style.background = '#28a745';
+      } else {
+        this.isPickingEnd = true;
+        this.messageManager.info('请在地图上点击目的站');
+        document.getElementById('pick-end-btn').style.background = '#28a745';
+      }
+    }
+
+    handleStationClick(station) {
+      if (this.isPickingStart) {
+        document.getElementById('start-station').value = station.name;
+        this.isPickingStart = false;
+        document.getElementById('pick-start-btn').style.background = '#007AFF';
+        this.messageManager.success(`已选择起始站: ${station.name}`);
+      } else if (this.isPickingEnd) {
+        document.getElementById('end-station').value = station.name;
+        this.isPickingEnd = false;
+        document.getElementById('pick-end-btn').style.background = '#007AFF';
+        this.messageManager.success(`已选择目的站: ${station.name}`);
+      } else {
+        // 显示站点信息
+        this.showStationInfo(station);
+      }
+    }
+
+    searchRoute() {
+      const startStation = document.getElementById('start-station').value.trim();
+      const endStation = document.getElementById('end-station').value.trim();
+      const mode = document.getElementById('search-mode').value;
+
+      if (!startStation || !endStation) {
+        this.messageManager.error('请输入起始站和目的站');
+        return;
+      }
+
+      if (!this.dataManager.hasStation(startStation)) {
+        this.messageManager.error(`找不到起始站: ${startStation}`);
+        return;
+      }
+
+      if (!this.dataManager.hasStation(endStation)) {
+        this.messageManager.error(`找不到目的站: ${endStation}`);
+        return;
+      }
+
+      try {
+        const pathResult = this.dataManager.findPath(startStation, endStation, mode);
+        this.currentPath = pathResult;
+
+        // 使用增强的高亮路径，支持变暗控制
+        const shouldDim = this.renderer.shouldDimOthers();
+        this.renderer.highlightPath(pathResult, shouldDim);
+
+        // 显示路线信息
+        this.showRouteInfo(pathResult);
+
+        this.messageManager.success('路线查询成功！');
+
+      } catch (error) {
+        this.messageManager.error(`路线查询失败: ${error.message}`);
+      }
+    }
+
+    clearPath() {
+      this.renderer.clearPathHighlight();
+      this.currentPath = null;
+
+      // 隐藏路线信息
+      document.getElementById('route-info').classList.add('hidden');
+
+      this.messageManager.info('已清除路线');
+    }
+
+    showRouteInfo(pathResult) {
+      const routeInfo = document.getElementById('route-info');
+      const routeDetails = document.getElementById('route-details');
+
+      let html = `
+        <div class="route-summary">
+          <h4>路线概览</h4>
+          <p><strong>总站数:</strong> ${pathResult.totalStations} 站</p>
+          <p><strong>换乘次数:</strong> ${pathResult.transfers} 次</p>
+          <p><strong>预计时间:</strong> ${Math.ceil(pathResult.totalStations * 2)} 分钟</p>
+        </div>
+        <div class="route-steps">
+          <h4>换乘指南</h4>
+      `;
+
+      pathResult.routes.forEach((route, index) => {
+        const lineColor = this.dataManager.getLine(route.line)?.color || '#666';
+        const isTransfer = index > 0;
+
+        html += `
+          <div class="route-step ${isTransfer ? 'transfer' : ''}">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <div style="width: 20px; height: 20px; background: ${lineColor}; border-radius: 3px;"></div>
+              <strong>${route.line}</strong>
+            </div>
+            <p>${route.from} → ${route.to}</p>
+            <p><small>经过 ${route.stations.length} 站: ${route.stations.join(' → ')}</small></p>
+          </div>
+        `;
+      });
+
+      html += '</div>';
+
+      routeDetails.innerHTML = html;
+      routeInfo.classList.remove('hidden');
+    }
+
+    showStationInfo(station) {
+      const connections = this.dataManager.getStationConnections(station.name);
+      const lines = [...new Set(connections.map(c => c.line))];
+
+      let html = `
+        <h4>${station.name}</h4>
+        <p><strong>站点类型:</strong> ${this.getStationTypeText(station.type)}</p>
+        <p><strong>经停线路:</strong> ${lines.join(', ')}</p>
+        <h5>可达站点:</h5>
+        <ul>
+      `;
+
+      connections.forEach(conn => {
+        html += `<li>${conn.line}: ${conn.to}</li>`;
+      });
+
+      html += '</ul>';
+
+      this.modalManager.show('站点信息', html);
+    }
+
+    getStationTypeText(type) {
+      switch (type) {
+        case 'transfer': return '换乘站';
+        case 'terminal': return '终点站';
+        case 'normal':
+        default: return '普通站';
+      }
+    }
+
+    showAddStationDialog() {
+      const html = `
+    <div class="input-group">
+      <label for="new-station-name">站点名称</label>
+      <input type="text" id="new-station-name" placeholder="请输入站点名称">
+    </div>
+    <div class="input-group">
+      <label for="new-station-type">站点类型</label>
+      <select id="new-station-type">
+        <option value="normal">普通站</option>
+        <option value="transfer">换乘站</option>
+        <option value="terminal">终点站</option>
+      </select>
+    </div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+      <div class="input-group">
+        <label for="new-station-x">X坐标</label>
+        <input type="number" id="new-station-x" placeholder="X坐标" min="0" max="2000" value="1000">
+      </div>
+      <div class="input-group">
+        <label for="new-station-y">Y坐标</label>
+        <input type="number" id="new-station-y" placeholder="Y坐标" min="0" max="2000" value="900">
+      </div>
+    </div>
+    <p><small>💡 提示：坐标范围通常在 0-2000 之间，(1000,900) 大约是地图中心位置</small></p>
+  `;
+
+      const footer = `
+    <button class="secondary-btn" onclick="window.metroApp.modalManager.hide()">取消</button>
+    <button class="primary-btn" onclick="window.metroApp.addStation()">添加</button>
+  `;
+
+      this.modalManager.show('添加站点', html, footer);
+    }
+
+    showAddLineDialog() {
+      const html = `
+        <div class="input-group">
+          <label for="new-line-name">线路名称</label>
+          <input type="text" id="new-line-name" placeholder="请输入线路名称，如：19号线">
+        </div>
+        <div class="input-group">
+          <label for="new-line-color">线路颜色</label>
+          <input type="color" id="new-line-color" value="#007AFF">
+        </div>
+      `;
+
+      const footer = `
+        <button class="secondary-btn" onclick="window.metroApp.modalManager.hide()">取消</button>
+        <button class="primary-btn" onclick="window.metroApp.addLine()">添加</button>
+      `;
+
+      this.modalManager.show('添加线路', html, footer);
+    }
+
+    showAddConnectionDialog() {
+      const stations = this.dataManager.getStationNames();
+      const lines = this.dataManager.getLineNames();
+
+      const stationOptions = stations.map(name => `<option value="${name}">${name}</option>`).join('');
+      const lineOptions = lines.map(name => `<option value="${name}">${name}</option>`).join('');
+
+      const html = `
+        <div class="input-group">
+          <label for="connection-from">起始站</label>
+          <select id="connection-from">
+            <option value="">请选择起始站</option>
+            ${stationOptions}
+          </select>
+        </div>
+        <div class="input-group">
+          <label for="connection-to">目标站</label>
+          <select id="connection-to">
+            <option value="">请选择目标站</option>
+            ${stationOptions}
+          </select>
+        </div>
+        <div class="input-group">
+          <label for="connection-line">所属线路</label>
+          <select id="connection-line">
+            <option value="">请选择线路</option>
+            ${lineOptions}
+          </select>
+        </div>
+      `;
+
+      const footer = `
+        <button class="secondary-btn" onclick="window.metroApp.modalManager.hide()">取消</button>
+        <button class="primary-btn" onclick="window.metroApp.addConnection()">添加</button>
+      `;
+
+      this.modalManager.show('连接站点', html, footer);
+    }
+
+    addStation() {
+      const name = document.getElementById('new-station-name').value.trim();
+      const type = document.getElementById('new-station-type').value;
+      const x = parseFloat(document.getElementById('new-station-x').value);
+      const y = parseFloat(document.getElementById('new-station-y').value);
+
+      // 输入验证
+      if (!name) {
+        this.messageManager.error('请输入站点名称');
+        return;
+      }
+
+      if (this.dataManager.hasStation(name)) {
+        this.messageManager.error('站点已存在');
+        return;
+      }
+
+      if (isNaN(x) || isNaN(y)) {
+        this.messageManager.error('请输入有效的坐标数值');
+        return;
+      }
+
+      if (x < 0 || x > 2000 || y < 0 || y > 2000) {
+        this.messageManager.error('坐标必须在 0-2000 范围内');
+        return;
+      }
+
+      // 使用用户输入的坐标
+      const position = [x, y];
+
+      try {
+        this.dataManager.addStation(name, position, type);
+        this.renderer.renderMap(); // 重新渲染地图
+        this.modalManager.hide();
+        this.messageManager.success(`站点 ${name} 添加成功，位置：(${x}, ${y})`);
+      } catch (error) {
+        this.messageManager.error(`添加站点失败: ${error.message}`);
+      }
+    }
+
+    addLine() {
+      const name = document.getElementById('new-line-name').value.trim();
+      const color = document.getElementById('new-line-color').value;
+
+      if (!name) {
+        this.messageManager.error('请输入线路名称');
+        return;
+      }
+
+      if (this.dataManager.hasLine(name)) {
+        this.messageManager.error('线路已存在');
+        return;
+      }
+
+      // 添加到数据加载器的线路颜色列表
+      this.dataLoader.lineColors.push({ name, color });
+      this.dataManager.lines.set(name, { name, color, id: `line-${name}` });
+
+      this.renderer.renderLegend(); // 重新渲染图例
+      this.modalManager.hide();
+      this.messageManager.success(`线路 ${name} 添加成功`);
+    }
+
+    addConnection() {
+      const from = document.getElementById('connection-from').value;
+      const to = document.getElementById('connection-to').value;
+      const line = document.getElementById('connection-line').value;
+
+      if (!from || !to || !line) {
+        this.messageManager.error('请填写完整的连接信息');
+        return;
+      }
+
+      if (from === to) {
+        this.messageManager.error('起始站和目标站不能相同');
+        return;
+      }
+
+      try {
+        this.dataManager.addConnection(from, to, line);
+        this.renderer.renderMap(); // 重新渲染地图
+        this.modalManager.hide();
+        this.messageManager.success(`连接 ${from} → ${to} (${line}) 添加成功`);
+      } catch (error) {
+        this.messageManager.error(`添加连接失败: ${error.message}`);
+      }
+    }
+
+    saveConfiguration() {
+      const config = {
+        stations: this.dataManager.getStations(),
+        connections: this.dataManager.getConnections(),
+        lines: this.dataManager.getLines(),
+        timestamp: new Date().toISOString()
+      };
+
+      const dataStr = JSON.stringify(config, null, 2);
+      const dataBlob = new Blob([dataStr], { type: 'application/json' });
+      const url = URL.createObjectURL(dataBlob);
+
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'metro-config.json';
+      link.click();
+
+      URL.revokeObjectURL(url);
+      this.messageManager.success('配置已保存到文件');
+    }
+
+    showApp() {
+      const loadingOverlay = document.getElementById('loading-overlay');
+      const appContainer = document.getElementById('app-container');
+
+      if (loadingOverlay) {
+        loadingOverlay.style.display = 'none';
+      }
+
+      if (appContainer) {
+        appContainer.classList.remove('hidden');
+        appContainer.style.display = 'flex';
+      }
+    }
+
+    showError(message) {
+      const loadingOverlay = document.getElementById('loading-overlay');
+      if (loadingOverlay) {
+        loadingOverlay.innerHTML = `
+          <div style="text-align: center; color: red;">
+            <h3>数据加载失败</h3>
+            <p>错误信息: ${message}</p>
+            <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px; text-align: left;">
+              <h4>请确保：</h4>
+              <ul style="text-align: left; display: inline-block;">
+                <li>通过HTTP服务器访问页面（不是直接打开文件）</li>
+                <li>在页面同级目录下创建 <code>data</code> 文件夹</li>
+                <li>将 <code>metro-data.json</code> 文件放入 <code>data</code> 文件夹</li>
+                <li>JSON文件包含 <code>stations</code> 和 <code>connections</code> 字段</li>
+              </ul>
+              <p><strong>预期路径：</strong> <code>./data/metro-data.json</code></p>
+            </div>
+            <p>当前使用最小演示数据，功能受限</p>
+            <button onclick="location.reload()" style="padding: 10px 20px; margin-top: 10px; background: #007AFF; color: white; border: none; border-radius: 5px; cursor: pointer;">重新加载</button>
+          </div>
+        `;
+      }
+    }
+  }
+
+  // 启动应用
+  document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOM加载完成，启动地铁换乘应用...');
+    console.log('当前页面路径:', window.location.href);
+    console.log('预期JSON文件路径:', new URL('./data/metro-data.json', window.location.href).href);
+
+    window.metroApp = new MetroTransferApp();
+    window.metroApp.init();
+  });
+
+  // 添加全局错误处理
+  window.addEventListener('error', function(e) {
+    console.error('JavaScript错误:', e.error);
+    const loadingOverlay = document.getElementById('loading-overlay');
+    if (loadingOverlay && loadingOverlay.style.display !== 'none') {
+      loadingOverlay.innerHTML = `
+        <div style="text-align: center; color: red;">
+          <h3>系统错误</h3>
+          <p>错误信息: ${e.error?.message || '未知错误'}</p>
+          <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px; text-align: left;">
+            <h4>可能的解决方案：</h4>
+            <ul style="text-align: left; display: inline-block;">
+              <li>检查是否通过HTTP服务器访问页面</li>
+              <li>确保 <code>./data/metro-data.json</code> 文件存在且格式正确</li>
+              <li>检查浏览器控制台获取详细错误信息</li>
+              <li>确保JSON文件包含必要的数据结构</li>
+            </ul>
+          </div>
+          <button onclick="location.reload()" style="padding: 10px 20px; margin-top: 10px; background: #007AFF; color: white; border: none; border-radius: 5px; cursor: pointer;">重新加载</button>
+        </div>
+      `;
+    }
+  });
+</script>
+</body>
+</html>

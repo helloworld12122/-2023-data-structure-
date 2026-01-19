@@ -1,0 +1,5677 @@
+{
+  "stations": [
+    {
+      "name": "富锦路",
+      "pos": [
+        1076,
+        120
+      ],
+      "type": "terminal"
+    },
+    {
+      "name": "友谊西路",
+      "pos": [
+        1076,
+        167
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "宝安公路",
+      "pos": [
+        1076,
+        214
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "共富新村",
+      "pos": [
+        1076,
+        262
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "呼兰路",
+      "pos": [
+        1076,
+        309
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "通河新村",
+      "pos": [
+        1076,
+        358
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "共康路",
+      "pos": [
+        1076,
+        405
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "彭浦新村",
+      "pos": [
+        1076,
+        453
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "汶水路",
+      "pos": [
+        1076,
+        499
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "上海马戏城",
+      "pos": [
+        1076,
+        547
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "延长路",
+      "pos": [
+        1076,
+        595
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "中山北路",
+      "pos": [
+        1076,
+        642
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "上海火车站",
+      "pos": [
+        1076,
+        716
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "汉中路",
+      "pos": [
+        1076,
+        798
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "新闸路",
+      "pos": [
+        1121,
+        841
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "人民广场",
+      "pos": [
+        1155,
+        896
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "黄陂南路",
+      "pos": [
+        1136,
+        959
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "陕西南路",
+      "pos": [
+        1002,
+        989
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "常熟路",
+      "pos": [
+        921,
+        989
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "衡山路",
+      "pos": [
+        855,
+        1057
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "徐家汇",
+      "pos": [
+        825,
+        1086
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "上海体育馆",
+      "pos": [
+        762,
+        1150
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "漕宝路",
+      "pos": [
+        730,
+        1256
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "上海南站",
+      "pos": [
+        676,
+        1313
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "锦江乐园",
+      "pos": [
+        654,
+        1336
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "莲花路",
+      "pos": [
+        626,
+        1361
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "外环路",
+      "pos": [
+        600,
+        1385
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "莘庄",
+      "pos": [
+        574,
+        1409
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "浦东国际机场",
+      "pos": [
+        1879,
+        1389
+      ],
+      "type": "terminal"
+    },
+    {
+      "name": "海天三路",
+      "pos": [
+        1879,
+        1347
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "远东大道",
+      "pos": [
+        1879,
+        1304
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "凌空路",
+      "pos": [
+        1879,
+        1263
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "川沙",
+      "pos": [
+        1879,
+        1221
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "华夏东路",
+      "pos": [
+        1879,
+        1178
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "创新中路",
+      "pos": [
+        1844,
+        1143
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "唐镇",
+      "pos": [
+        1781,
+        1143
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "广兰路",
+      "pos": [
+        1718,
+        1143
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "金科路",
+      "pos": [
+        1654,
+        1143
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "张江高科",
+      "pos": [
+        1592,
+        1143
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "龙阳路",
+      "pos": [
+        1531,
+        1131
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "世纪公园",
+      "pos": [
+        1496,
+        1088
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "上海科技馆",
+      "pos": [
+        1455,
+        1047
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "世纪大道",
+      "pos": [
+        1416,
+        1007
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "东昌路",
+      "pos": [
+        1351,
+        943
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "陆家嘴",
+      "pos": [
+        1327,
+        919
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "南京东路",
+      "pos": [
+        1243,
+        896
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "南京西路",
+      "pos": [
+        1058,
+        896
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "静安寺",
+      "pos": [
+        921,
+        896
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "江苏路",
+      "pos": [
+        825,
+        896
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "中山公园",
+      "pos": [
+        754,
+        896
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "娄山关路",
+      "pos": [
+        672,
+        896
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "威宁路",
+      "pos": [
+        597,
+        896
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "北新泾",
+      "pos": [
+        522,
+        896
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "淞虹路",
+      "pos": [
+        448,
+        896
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "虹桥2号航站楼",
+      "pos": [
+        383,
+        936
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "虹桥火车站",
+      "pos": [
+        333,
+        932
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "徐泾东",
+      "pos": [
+        297,
+        932
+      ],
+      "type": "terminal"
+    },
+    {
+      "name": "石龙路",
+      "pos": [
+        758,
+        1313
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "龙漕路",
+      "pos": [
+        788,
+        1256
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "漕溪路",
+      "pos": [
+        767,
+        1206
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "宜山路",
+      "pos": [
+        754,
+        1086
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "虹桥路",
+      "pos": [
+        754,
+        1020
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "延安西路",
+      "pos": [
+        754,
+        953
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "金沙江路",
+      "pos": [
+        754,
+        798
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "曹杨路",
+      "pos": [
+        825,
+        716
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "镇坪路",
+      "pos": [
+        921,
+        716
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "中潭路",
+      "pos": [
+        1007,
+        716
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "宝山路",
+      "pos": [
+        1179,
+        716
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "东宝兴路",
+      "pos": [
+        1209,
+        654
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "虹口足球场",
+      "pos": [
+        1209,
+        631
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "赤峰路",
+      "pos": [
+        1209,
+        574
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "大柏树",
+      "pos": [
+        1209,
+        536
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "江湾镇",
+      "pos": [
+        1209,
+        498
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "殷高西路",
+      "pos": [
+        1209,
+        460
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "长江南路",
+      "pos": [
+        1240,
+        405
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "淞发路",
+      "pos": [
+        1292,
+        360
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "张华浜",
+      "pos": [
+        1349,
+        290
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "淞滨路",
+      "pos": [
+        1349,
+        252
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "水产路",
+      "pos": [
+        1349,
+        214
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "宝杨路",
+      "pos": [
+        1349,
+        176
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "友谊路",
+      "pos": [
+        1349,
+        138
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "铁力路",
+      "pos": [
+        1307,
+        109
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "江杨北路",
+      "pos": [
+        1258,
+        109
+      ],
+      "type": "terminal"
+    },
+    {
+      "name": "上海体育场",
+      "pos": [
+        874,
+        1173
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "东安路",
+      "pos": [
+        920,
+        1173
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "大木桥路",
+      "pos": [
+        1002,
+        1173
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "鲁班路",
+      "pos": [
+        1050,
+        1173
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "西藏南路",
+      "pos": [
+        1188,
+        1173
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "南浦大桥",
+      "pos": [
+        1241,
+        1173
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "塘桥",
+      "pos": [
+        1299,
+        1173
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "蓝村路",
+      "pos": [
+        1351,
+        1173
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "浦电路(4号线)",
+      "pos": [
+        1417,
+        1096
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "浦东大道",
+      "pos": [
+        1417,
+        896
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "杨树浦路",
+      "pos": [
+        1417,
+        778
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "大连路",
+      "pos": [
+        1382,
+        723
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "临平路",
+      "pos": [
+        1311,
+        723
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "海伦路",
+      "pos": [
+        1242,
+        723
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "春申路",
+      "pos": [
+        560,
+        1444
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "银都路",
+      "pos": [
+        560,
+        1476
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "颛桥",
+      "pos": [
+        560,
+        1508
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "北桥",
+      "pos": [
+        560,
+        1540
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "剑川路",
+      "pos": [
+        560,
+        1572
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "东川路",
+      "pos": [
+        560,
+        1603
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "金平路",
+      "pos": [
+        518,
+        1614
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "华宁路",
+      "pos": [
+        451,
+        1614
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "文井路",
+      "pos": [
+        401,
+        1614
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "闵行开发区",
+      "pos": [
+        345,
+        1614
+      ],
+      "type": "terminal"
+    },
+    {
+      "name": "江川路",
+      "pos": [
+        560,
+        1648
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "西渡",
+      "pos": [
+        560,
+        1709
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "萧塘",
+      "pos": [
+        560,
+        1750
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "奉浦大道",
+      "pos": [
+        633,
+        1776
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "环城东路",
+      "pos": [
+        694,
+        1776
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "望园路",
+      "pos": [
+        748,
+        1776
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "金海湖",
+      "pos": [
+        772,
+        1826
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "奉贤新城",
+      "pos": [
+        772,
+        1871
+      ],
+      "type": "terminal"
+    },
+    {
+      "name": "港城路",
+      "pos": [
+        1680,
+        337
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "外高桥保税区北",
+      "pos": [
+        1680,
+        385
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "航津路",
+      "pos": [
+        1680,
+        429
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "外高桥保税区南",
+      "pos": [
+        1680,
+        473
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "洲海路",
+      "pos": [
+        1635,
+        558
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "五洲大道",
+      "pos": [
+        1635,
+        598
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "东靖路",
+      "pos": [
+        1635,
+        639
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "巨峰路",
+      "pos": [
+        1635,
+        688
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "五莲路",
+      "pos": [
+        1635,
+        732
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "博兴路",
+      "pos": [
+        1635,
+        766
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "金桥路",
+      "pos": [
+        1627,
+        794
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "云山路",
+      "pos": [
+        1595,
+        824
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "德平路",
+      "pos": [
+        1568,
+        854
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "北洋泾路",
+      "pos": [
+        1538,
+        884
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "民生路",
+      "pos": [
+        1508,
+        913
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "源深体育中心",
+      "pos": [
+        1477,
+        943
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "浦电路(6号线)",
+      "pos": [
+        1351,
+        1096
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "上海儿童医学中心",
+      "pos": [
+        1322,
+        1204
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "临沂新村",
+      "pos": [
+        1299,
+        1227
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "高科西路",
+      "pos": [
+        1289,
+        1282
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "东明路",
+      "pos": [
+        1290,
+        1338
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "高青路",
+      "pos": [
+        1290,
+        1387
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "华夏西路",
+      "pos": [
+        1256,
+        1408
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "上南路",
+      "pos": [
+        1197,
+        1408
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "灵岩南路",
+      "pos": [
+        1134,
+        1408
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "东方体育中心",
+      "pos": [
+        1089,
+        1411
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "花木路",
+      "pos": [
+        1592,
+        1069
+      ],
+      "type": "terminal"
+    },
+    {
+      "name": "芳华路",
+      "pos": [
+        1480,
+        1179
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "锦绣路",
+      "pos": [
+        1450,
+        1211
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "杨高南路",
+      "pos": [
+        1416,
+        1245
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "云台路",
+      "pos": [
+        1234,
+        1282
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "耀华路",
+      "pos": [
+        1188,
+        1282
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "长清路",
+      "pos": [
+        1108,
+        1282
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "后滩",
+      "pos": [
+        1058,
+        1282
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "龙华中路",
+      "pos": [
+        920,
+        1256
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "肇嘉浜路",
+      "pos": [
+        920,
+        1086
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "昌平路",
+      "pos": [
+        921,
+        860
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "长寿路",
+      "pos": [
+        921,
+        798
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "岚皋路",
+      "pos": [
+        920,
+        682
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "新村路",
+      "pos": [
+        920,
+        640
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "大华三路",
+      "pos": [
+        920,
+        597
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "行知路",
+      "pos": [
+        920,
+        554
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "大场镇",
+      "pos": [
+        920,
+        511
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "场中路",
+      "pos": [
+        920,
+        469
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "上大路",
+      "pos": [
+        891,
+        423
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "南陈路",
+      "pos": [
+        835,
+        397
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "上海大学",
+      "pos": [
+        767,
+        397
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "祁华路",
+      "pos": [
+        653,
+        332
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "顾村公园",
+      "pos": [
+        653,
+        293
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "刘行",
+      "pos": [
+        653,
+        258
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "潘广路",
+      "pos": [
+        653,
+        212
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "罗南新村",
+      "pos": [
+        653,
+        166
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "美兰湖",
+      "pos": [
+        653,
+        120
+      ],
+      "type": "terminal"
+    },
+    {
+      "name": "沈杜公路",
+      "pos": [
+        1052,
+        1714
+      ],
+      "type": "terminal"
+    },
+    {
+      "name": "联航路",
+      "pos": [
+        1052,
+        1662
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "江月路",
+      "pos": [
+        1052,
+        1612
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "浦江镇",
+      "pos": [
+        1052,
+        1562
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "芦恒路",
+      "pos": [
+        1052,
+        1512
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "凌兆新村",
+      "pos": [
+        1052,
+        1462
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "杨思",
+      "pos": [
+        1135,
+        1370
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "成山路",
+      "pos": [
+        1188,
+        1338
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "中华艺术宫",
+      "pos": [
+        1188,
+        1226
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "陆家浜路",
+      "pos": [
+        1188,
+        1085
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "老西门",
+      "pos": [
+        1188,
+        1028
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "大世界",
+      "pos": [
+        1188,
+        960
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "曲阜路",
+      "pos": [
+        1157,
+        798
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "中兴路",
+      "pos": [
+        1163,
+        677
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "西藏北路",
+      "pos": [
+        1182,
+        656
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "曲阳路",
+      "pos": [
+        1258,
+        627
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "四平路",
+      "pos": [
+        1322,
+        627
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "鞍山新村",
+      "pos": [
+        1382,
+        627
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "江浦路",
+      "pos": [
+        1423,
+        614
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "黄兴路",
+      "pos": [
+        1454,
+        584
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "延吉中路",
+      "pos": [
+        1483,
+        553
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "黄兴公园",
+      "pos": [
+        1497,
+        532
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "翔殷路",
+      "pos": [
+        1497,
+        495
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "嫩江路",
+      "pos": [
+        1497,
+        458
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "市光路",
+      "pos": [
+        1497,
+        420
+      ],
+      "type": "terminal"
+    },
+    {
+      "name": "曹路",
+      "pos": [
+        1872,
+        816
+      ],
+      "type": "terminal"
+    },
+    {
+      "name": "民雷路",
+      "pos": [
+        1823,
+        816
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "顾唐路",
+      "pos": [
+        1785,
+        816
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "金海路",
+      "pos": [
+        1751,
+        816
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "金吉路",
+      "pos": [
+        1717,
+        851
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "金桥",
+      "pos": [
+        1687,
+        882
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "台儿庄路",
+      "pos": [
+        1656,
+        913
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "蓝天路",
+      "pos": [
+        1624,
+        943
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "芳甸路",
+      "pos": [
+        1590,
+        979
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "杨高中路",
+      "pos": [
+        1500,
+        1007
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "商城路",
+      "pos": [
+        1349,
+        1007
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "小南门",
+      "pos": [
+        1262,
+        1049
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "马当路",
+      "pos": [
+        1107,
+        1085
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "打浦桥",
+      "pos": [
+        1047,
+        1085
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "嘉善路",
+      "pos": [
+        1001,
+        1085
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "桂林路",
+      "pos": [
+        634,
+        1161
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "漕河泾开发区",
+      "pos": [
+        570,
+        1161
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "合川路",
+      "pos": [
+        505,
+        1161
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "星中路",
+      "pos": [
+        459,
+        1161
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "七宝",
+      "pos": [
+        419,
+        1161
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "中春路",
+      "pos": [
+        361,
+        1194
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "九亭",
+      "pos": [
+        322,
+        1232
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "泗泾",
+      "pos": [
+        290,
+        1265
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "佘山",
+      "pos": [
+        254,
+        1301
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "洞泾",
+      "pos": [
+        209,
+        1373
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "松江大学城",
+      "pos": [
+        209,
+        1444
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "松江新城",
+      "pos": [
+        198,
+        1502
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "松江体育中心",
+      "pos": [
+        169,
+        1532
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "醉白池",
+      "pos": [
+        142,
+        1559
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "松江南站",
+      "pos": [
+        107,
+        1594
+      ],
+      "type": "terminal"
+    },
+    {
+      "name": "基隆路",
+      "pos": [
+        1739,
+        337
+      ],
+      "type": "terminal"
+    },
+    {
+      "name": "高桥",
+      "pos": [
+        1632,
+        337
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "高桥西",
+      "pos": [
+        1582,
+        337
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "双江路",
+      "pos": [
+        1532,
+        337
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "国帆路",
+      "pos": [
+        1450,
+        337
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "新江湾城",
+      "pos": [
+        1399,
+        394
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "殷高东路",
+      "pos": [
+        1399,
+        421
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "三门路",
+      "pos": [
+        1399,
+        466
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "江湾体育场",
+      "pos": [
+        1399,
+        503
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "五角场",
+      "pos": [
+        1399,
+        537
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "国权路",
+      "pos": [
+        1378,
+        569
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "同济大学",
+      "pos": [
+        1349,
+        599
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "邮电新村",
+      "pos": [
+        1277,
+        671
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "四川北路",
+      "pos": [
+        1242,
+        773
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "天潼路",
+      "pos": [
+        1242,
+        817
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "豫园",
+      "pos": [
+        1242,
+        960
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "新天地",
+      "pos": [
+        1075,
+        1028
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "上海图书馆",
+      "pos": [
+        867,
+        1020
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "交通大学",
+      "pos": [
+        825,
+        1020
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "宋园路",
+      "pos": [
+        719,
+        990
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "伊犁路",
+      "pos": [
+        690,
+        962
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "水城路",
+      "pos": [
+        645,
+        940
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "龙溪路",
+      "pos": [
+        605,
+        940
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "上海动物园",
+      "pos": [
+        550,
+        940
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "虹桥1号航站楼",
+      "pos": [
+        466,
+        940
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "龙柏新村",
+      "pos": [
+        548,
+        976
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "紫藤路",
+      "pos": [
+        521,
+        1005
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "航中路",
+      "pos": [
+        440,
+        1020
+      ],
+      "type": "terminal"
+    },
+    {
+      "name": "迪士尼",
+      "pos": [
+        1783,
+        1472
+      ],
+      "type": "terminal"
+    },
+    {
+      "name": "康新公路",
+      "pos": [
+        1713,
+        1472
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "秀沿路",
+      "pos": [
+        1642,
+        1472
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "罗山路",
+      "pos": [
+        1570,
+        1472
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "御桥",
+      "pos": [
+        1470,
+        1472
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "浦三路",
+      "pos": [
+        1375,
+        1471
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "三林东",
+      "pos": [
+        1280,
+        1471
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "三林",
+      "pos": [
+        1184,
+        1471
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "龙耀路",
+      "pos": [
+        943,
+        1375
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "云锦路",
+      "pos": [
+        893,
+        1325
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "龙华",
+      "pos": [
+        825,
+        1255
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "上海游泳馆",
+      "pos": [
+        825,
+        1226
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "隆德路",
+      "pos": [
+        825,
+        798
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "枫桥路",
+      "pos": [
+        784,
+        676
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "真如",
+      "pos": [
+        747,
+        638
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "上海西站",
+      "pos": [
+        710,
+        601
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "李子园",
+      "pos": [
+        674,
+        564
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "祁连山路",
+      "pos": [
+        601,
+        529
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "武威路",
+      "pos": [
+        517,
+        494
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "桃浦新村",
+      "pos": [
+        486,
+        463
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "南翔",
+      "pos": [
+        450,
+        428
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "马陆",
+      "pos": [
+        388,
+        366
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "嘉定新城",
+      "pos": [
+        356,
+        333
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "白银路",
+      "pos": [
+        346,
+        267
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "嘉定西",
+      "pos": [
+        346,
+        193
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "嘉定北",
+      "pos": [
+        346,
+        119
+      ],
+      "type": "terminal"
+    },
+    {
+      "name": "上海赛车场",
+      "pos": [
+        299,
+        333
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "昌吉东路",
+      "pos": [
+        272,
+        359
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "上海汽车城",
+      "pos": [
+        249,
+        382
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "安亭",
+      "pos": [
+        222,
+        408
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "兆丰路",
+      "pos": [
+        201,
+        419
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "光明路",
+      "pos": [
+        156,
+        419
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "花桥",
+      "pos": [
+        111,
+        419
+      ],
+      "type": "terminal"
+    },
+    {
+      "name": "七莘路",
+      "pos": [
+        378,
+        1332
+      ],
+      "type": "terminal"
+    },
+    {
+      "name": "虹莘路",
+      "pos": [
+        425,
+        1332
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "顾戴路",
+      "pos": [
+        472,
+        1332
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "东兰路",
+      "pos": [
+        538,
+        1293
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "虹梅路",
+      "pos": [
+        562,
+        1269
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "虹漕路",
+      "pos": [
+        590,
+        1255
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "桂林公园",
+      "pos": [
+        635,
+        1255
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "国际客运中心",
+      "pos": [
+        1304,
+        797
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "提篮桥",
+      "pos": [
+        1339,
+        762
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "江浦公园",
+      "pos": [
+        1397,
+        702
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "宁国路",
+      "pos": [
+        1417,
+        687
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "隆昌路",
+      "pos": [
+        1463,
+        687
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "爱国路",
+      "pos": [
+        1510,
+        687
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "复兴岛",
+      "pos": [
+        1556,
+        687
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "东陆路",
+      "pos": [
+        1602,
+        687
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "杨高北路",
+      "pos": [
+        1699,
+        687
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "金京路",
+      "pos": [
+        1751,
+        715
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "申江路",
+      "pos": [
+        1751,
+        770
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "金运路",
+      "pos": [
+        347,
+        759
+      ],
+      "type": "terminal"
+    },
+    {
+      "name": "金沙江西路",
+      "pos": [
+        422,
+        759
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "丰庄",
+      "pos": [
+        495,
+        759
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "祁连山南路",
+      "pos": [
+        569,
+        759
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "真北路",
+      "pos": [
+        594,
+        777
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "大渡河路",
+      "pos": [
+        672,
+        798
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "武宁路",
+      "pos": [
+        874,
+        798
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "江宁路",
+      "pos": [
+        984,
+        798
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "自然博物馆",
+      "pos": [
+        1075,
+        845
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "淮海中路",
+      "pos": [
+        1075,
+        944
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "世博会博物馆",
+      "pos": [
+        1108,
+        1126
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "世博大道",
+      "pos": [
+        1108,
+        1230
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "华鹏路",
+      "pos": [
+        1325,
+        1338
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "下南路",
+      "pos": [
+        1381,
+        1338
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "北蔡",
+      "pos": [
+        1437,
+        1338
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "陈春路",
+      "pos": [
+        1474,
+        1357
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "莲溪路",
+      "pos": [
+        1530,
+        1374
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "华夏中路",
+      "pos": [
+        1570,
+        1374
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "中科路",
+      "pos": [
+        1665,
+        1374
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "学林路",
+      "pos": [
+        1714,
+        1374
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "张江路",
+      "pos": [
+        1760,
+        1374
+      ],
+      "type": "terminal"
+    },
+    {
+      "name": "封浜",
+      "pos": [
+        194,
+        570
+      ],
+      "type": "terminal"
+    },
+    {
+      "name": "乐秀路",
+      "pos": [
+        271,
+        570
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "临洮路",
+      "pos": [
+        354,
+        570
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "嘉怡路",
+      "pos": [
+        425,
+        570
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "定边路",
+      "pos": [
+        488,
+        601
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "真新新村",
+      "pos": [
+        512,
+        625
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "真光路",
+      "pos": [
+        621,
+        638
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "铜川路",
+      "pos": [
+        710,
+        638
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "中宁路",
+      "pos": [
+        804,
+        664
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "武定路",
+      "pos": [
+        874,
+        857
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "浦东南路",
+      "pos": [
+        1380,
+        896
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "源深路",
+      "pos": [
+        1462,
+        896
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "昌邑路",
+      "pos": [
+        1508,
+        865
+      ],
+      "type": "transfer"
+    },
+    {
+      "name": "歇浦路",
+      "pos": [
+        1548,
+        823
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "黄杨路",
+      "pos": [
+        1664,
+        947
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "云顺路",
+      "pos": [
+        1721,
+        947
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "浦东足球场",
+      "pos": [
+        1781,
+        947
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "金粤路",
+      "pos": [
+        1841,
+        947
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "桂桥路",
+      "pos": [
+        1901,
+        947
+      ],
+      "type": "terminal"
+    },
+    {
+      "name": "锦秋路",
+      "pos": [
+        711,
+        346
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "丰翔路",
+      "pos": [
+        711,
+        423
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "南大路",
+      "pos": [
+        711,
+        456
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "祁安路",
+      "pos": [
+        711,
+        489
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "古浪路",
+      "pos": [
+        711,
+        523
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "武威东路",
+      "pos": [
+        711,
+        556
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "梅岭北路",
+      "pos": [
+        688,
+        700
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "长风公园",
+      "pos": [
+        672,
+        842
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "红宝石路",
+      "pos": [
+        672,
+        920
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "姚虹路",
+      "pos": [
+        634,
+        1058
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "吴中路",
+      "pos": [
+        634,
+        1099
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "华东理工大学",
+      "pos": [
+        705,
+        1357
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "罗秀路",
+      "pos": [
+        715,
+        1395
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "朱梅路",
+      "pos": [
+        715,
+        1422
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "华泾西",
+      "pos": [
+        715,
+        1449
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "虹梅南路",
+      "pos": [
+        715,
+        1476
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "景西路",
+      "pos": [
+        715,
+        1503
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "曙建路",
+      "pos": [
+        715,
+        1530
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "双柏路",
+      "pos": [
+        715,
+        1558
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "元江路",
+      "pos": [
+        715,
+        1585
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "永德路",
+      "pos": [
+        715,
+        1612
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "紫竹高新区",
+      "pos": [
+        715,
+        1640
+      ],
+      "type": "terminal"
+    },
+    {
+      "name": "周浦东",
+      "pos": [
+        1571,
+        1555
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "鹤沙航城",
+      "pos": [
+        1571,
+        1650
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "航头东",
+      "pos": [
+        1571,
+        1747
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "新场",
+      "pos": [
+        1613,
+        1835
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "野生动物园",
+      "pos": [
+        1676,
+        1835
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "惠南",
+      "pos": [
+        1736,
+        1835
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "惠南东",
+      "pos": [
+        1769,
+        1849
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "书院",
+      "pos": [
+        1802,
+        1883
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "临港大道",
+      "pos": [
+        1834,
+        1915
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "滴水湖",
+      "pos": [
+        1864,
+        1945
+      ],
+      "type": "terminal"
+    },
+    {
+      "name": "诸光路",
+      "pos": [
+        268,
+        923
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "蟠龙路",
+      "pos": [
+        238,
+        934
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "徐盈路",
+      "pos": [
+        211,
+        960
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "徐泾北城",
+      "pos": [
+        184,
+        989
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "嘉松中路",
+      "pos": [
+        175,
+        1013
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "赵巷",
+      "pos": [
+        175,
+        1048
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "汇金路",
+      "pos": [
+        175,
+        1083
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "青浦新城",
+      "pos": [
+        175,
+        1115
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "漕盈路",
+      "pos": [
+        175,
+        1154
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "淀山湖大道",
+      "pos": [
+        175,
+        1192
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "朱家角",
+      "pos": [
+        161,
+        1212
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "东方绿舟",
+      "pos": [
+        122,
+        1260
+      ],
+      "type": "terminal"
+    },
+    {
+      "name": "殷高路",
+      "pos": [
+        1291,
+        446
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "上海财经大学",
+      "pos": [
+        1294,
+        495
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "复旦大学",
+      "pos": [
+        1334,
+        530
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "抚顺路",
+      "pos": [
+        1400,
+        590
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "平凉路",
+      "pos": [
+        1442,
+        735
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "丹阳路",
+      "pos": [
+        1491,
+        774
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "迎春路",
+      "pos": [
+        1530,
+        1077
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "芳芯路",
+      "pos": [
+        1530,
+        1266
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "北中路",
+      "pos": [
+        1530,
+        1316
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "康桥",
+      "pos": [
+        1470,
+        1527
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "周浦",
+      "pos": [
+        1470,
+        1577
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "繁荣路",
+      "pos": [
+        1470,
+        1628
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "沈梅路",
+      "pos": [
+        1470,
+        1679
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "鹤涛路",
+      "pos": [
+        1470,
+        1729
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "下沙",
+      "pos": [
+        1470,
+        1780
+      ],
+      "type": "normal"
+    },
+    {
+      "name": "航头",
+      "pos": [
+        1470,
+        1831
+      ],
+      "type": "terminal"
+    }
+  ],
+  "connections": [
+    {
+      "from": "上海体育馆",
+      "to": "漕宝路",
+      "line": "1号线"
+    },
+    {
+      "from": "上海南站",
+      "to": "锦江乐园",
+      "line": "1号线"
+    },
+    {
+      "from": "上海火车站",
+      "to": "汉中路",
+      "line": "1号线"
+    },
+    {
+      "from": "上海马戏城",
+      "to": "延长路",
+      "line": "1号线"
+    },
+    {
+      "from": "中山北路",
+      "to": "上海火车站",
+      "line": "1号线"
+    },
+    {
+      "from": "人民广场",
+      "to": "黄陂南路",
+      "line": "1号线"
+    },
+    {
+      "from": "共富新村",
+      "to": "呼兰路",
+      "line": "1号线"
+    },
+    {
+      "from": "共康路",
+      "to": "彭浦新村",
+      "line": "1号线"
+    },
+    {
+      "from": "友谊西路",
+      "to": "宝安公路",
+      "line": "1号线"
+    },
+    {
+      "from": "呼兰路",
+      "to": "通河新村",
+      "line": "1号线"
+    },
+    {
+      "from": "外环路",
+      "to": "莘庄",
+      "line": "1号线"
+    },
+    {
+      "from": "宝安公路",
+      "to": "共富新村",
+      "line": "1号线"
+    },
+    {
+      "from": "富锦路",
+      "to": "友谊西路",
+      "line": "1号线"
+    },
+    {
+      "from": "常熟路",
+      "to": "衡山路",
+      "line": "1号线"
+    },
+    {
+      "from": "延长路",
+      "to": "中山北路",
+      "line": "1号线"
+    },
+    {
+      "from": "彭浦新村",
+      "to": "汶水路",
+      "line": "1号线"
+    },
+    {
+      "from": "徐家汇",
+      "to": "上海体育馆",
+      "line": "1号线"
+    },
+    {
+      "from": "新闸路",
+      "to": "人民广场",
+      "line": "1号线"
+    },
+    {
+      "from": "汉中路",
+      "to": "新闸路",
+      "line": "1号线"
+    },
+    {
+      "from": "汶水路",
+      "to": "上海马戏城",
+      "line": "1号线"
+    },
+    {
+      "from": "漕宝路",
+      "to": "上海南站",
+      "line": "1号线"
+    },
+    {
+      "from": "莲花路",
+      "to": "外环路",
+      "line": "1号线"
+    },
+    {
+      "from": "衡山路",
+      "to": "徐家汇",
+      "line": "1号线"
+    },
+    {
+      "from": "通河新村",
+      "to": "共康路",
+      "line": "1号线"
+    },
+    {
+      "from": "锦江乐园",
+      "to": "莲花路",
+      "line": "1号线"
+    },
+    {
+      "from": "陕西南路",
+      "to": "常熟路",
+      "line": "1号线"
+    },
+    {
+      "from": "黄陂南路",
+      "to": "陕西南路",
+      "line": "1号线"
+    },
+    {
+      "from": "上海科技馆",
+      "to": "世纪大道",
+      "line": "2号线"
+    },
+    {
+      "from": "世纪公园",
+      "to": "上海科技馆",
+      "line": "2号线"
+    },
+    {
+      "from": "世纪大道",
+      "to": "东昌路",
+      "line": "2号线"
+    },
+    {
+      "from": "东昌路",
+      "to": "陆家嘴",
+      "line": "2号线"
+    },
+    {
+      "from": "中山公园",
+      "to": "娄山关路",
+      "line": "2号线"
+    },
+    {
+      "from": "人民广场",
+      "to": "南京东路",
+      "line": "2号线"
+    },
+    {
+      "from": "人民广场",
+      "to": "南京西路",
+      "line": "2号线"
+    },
+    {
+      "from": "凌空路",
+      "to": "川沙",
+      "line": "2号线"
+    },
+    {
+      "from": "创新中路",
+      "to": "唐镇",
+      "line": "2号线"
+    },
+    {
+      "from": "北新泾",
+      "to": "淞虹路",
+      "line": "2号线"
+    },
+    {
+      "from": "华夏东路",
+      "to": "创新中路",
+      "line": "2号线"
+    },
+    {
+      "from": "南京西路",
+      "to": "静安寺",
+      "line": "2号线"
+    },
+    {
+      "from": "唐镇",
+      "to": "广兰路",
+      "line": "2号线"
+    },
+    {
+      "from": "威宁路",
+      "to": "北新泾",
+      "line": "2号线"
+    },
+    {
+      "from": "娄山关路",
+      "to": "威宁路",
+      "line": "2号线"
+    },
+    {
+      "from": "川沙",
+      "to": "华夏东路",
+      "line": "2号线"
+    },
+    {
+      "from": "广兰路",
+      "to": "金科路",
+      "line": "2号线"
+    },
+    {
+      "from": "张江高科",
+      "to": "龙阳路",
+      "line": "2号线"
+    },
+    {
+      "from": "江苏路",
+      "to": "中山公园",
+      "line": "2号线"
+    },
+    {
+      "from": "浦东国际机场",
+      "to": "海天三路",
+      "line": "2号线"
+    },
+    {
+      "from": "海天三路",
+      "to": "远东大道",
+      "line": "2号线"
+    },
+    {
+      "from": "淞虹路",
+      "to": "虹桥2号航站楼",
+      "line": "2号线"
+    },
+    {
+      "from": "虹桥2号航站楼",
+      "to": "虹桥火车站",
+      "line": "2号线"
+    },
+    {
+      "from": "虹桥火车站",
+      "to": "徐泾东",
+      "line": "2号线"
+    },
+    {
+      "from": "远东大道",
+      "to": "凌空路",
+      "line": "2号线"
+    },
+    {
+      "from": "金科路",
+      "to": "张江高科",
+      "line": "2号线"
+    },
+    {
+      "from": "陆家嘴",
+      "to": "南京东路",
+      "line": "2号线"
+    },
+    {
+      "from": "静安寺",
+      "to": "江苏路",
+      "line": "2号线"
+    },
+    {
+      "from": "龙阳路",
+      "to": "世纪公园",
+      "line": "2号线"
+    },
+    {
+      "from": "上海南站",
+      "to": "石龙路",
+      "line": "3号线"
+    },
+    {
+      "from": "上海火车站",
+      "to": "中潭路",
+      "line": "3号线"
+    },
+    {
+      "from": "上海火车站",
+      "to": "宝山路",
+      "line": "3号线"
+    },
+    {
+      "from": "东宝兴路",
+      "to": "虹口足球场",
+      "line": "3号线"
+    },
+    {
+      "from": "中山公园",
+      "to": "延安西路",
+      "line": "3号线"
+    },
+    {
+      "from": "中山公园",
+      "to": "金沙江路",
+      "line": "3号线"
+    },
+    {
+      "from": "友谊路",
+      "to": "铁力路",
+      "line": "3号线"
+    },
+    {
+      "from": "大柏树",
+      "to": "江湾镇",
+      "line": "3号线"
+    },
+    {
+      "from": "宜山路",
+      "to": "虹桥路",
+      "line": "3号线"
+    },
+    {
+      "from": "宝山路",
+      "to": "东宝兴路",
+      "line": "3号线"
+    },
+    {
+      "from": "宝杨路",
+      "to": "友谊路",
+      "line": "3号线"
+    },
+    {
+      "from": "张华浜",
+      "to": "淞滨路",
+      "line": "3号线"
+    },
+    {
+      "from": "曹杨路",
+      "to": "镇坪路",
+      "line": "3号线"
+    },
+    {
+      "from": "殷高西路",
+      "to": "长江南路",
+      "line": "3号线"
+    },
+    {
+      "from": "水产路",
+      "to": "宝杨路",
+      "line": "3号线"
+    },
+    {
+      "from": "江湾镇",
+      "to": "殷高西路",
+      "line": "3号线"
+    },
+    {
+      "from": "淞发路",
+      "to": "张华浜",
+      "line": "3号线"
+    },
+    {
+      "from": "淞滨路",
+      "to": "水产路",
+      "line": "3号线"
+    },
+    {
+      "from": "漕溪路",
+      "to": "宜山路",
+      "line": "3号线"
+    },
+    {
+      "from": "石龙路",
+      "to": "龙漕路",
+      "line": "3号线"
+    },
+    {
+      "from": "虹口足球场",
+      "to": "赤峰路",
+      "line": "3号线"
+    },
+    {
+      "from": "虹桥路",
+      "to": "延安西路",
+      "line": "3号线"
+    },
+    {
+      "from": "赤峰路",
+      "to": "大柏树",
+      "line": "3号线"
+    },
+    {
+      "from": "金沙江路",
+      "to": "曹杨路",
+      "line": "3号线"
+    },
+    {
+      "from": "铁力路",
+      "to": "江杨北路",
+      "line": "3号线"
+    },
+    {
+      "from": "镇坪路",
+      "to": "中潭路",
+      "line": "3号线"
+    },
+    {
+      "from": "长江南路",
+      "to": "淞发路",
+      "line": "3号线"
+    },
+    {
+      "from": "龙漕路",
+      "to": "漕溪路",
+      "line": "3号线"
+    },
+    {
+      "from": "上海体育场",
+      "to": "东安路",
+      "line": "4号线"
+    },
+    {
+      "from": "上海体育馆",
+      "to": "宜山路",
+      "line": "4号线"
+    },
+    {
+      "from": "上海体育馆",
+      "to": "上海体育场",
+      "line": "4号线"
+    },
+    {
+      "from": "上海火车站",
+      "to": "中潭路",
+      "line": "4号线"
+    },
+    {
+      "from": "上海火车站",
+      "to": "宝山路",
+      "line": "4号线"
+    },
+    {
+      "from": "世纪大道",
+      "to": "浦电路(4号线)",
+      "line": "4号线"
+    },
+    {
+      "from": "世纪大道",
+      "to": "浦东大道",
+      "line": "4号线"
+    },
+    {
+      "from": "东安路",
+      "to": "大木桥路",
+      "line": "4号线"
+    },
+    {
+      "from": "中山公园",
+      "to": "延安西路",
+      "line": "4号线"
+    },
+    {
+      "from": "中山公园",
+      "to": "金沙江路",
+      "line": "4号线"
+    },
+    {
+      "from": "临平路",
+      "to": "海伦路",
+      "line": "4号线"
+    },
+    {
+      "from": "南浦大桥",
+      "to": "塘桥",
+      "line": "4号线"
+    },
+    {
+      "from": "塘桥",
+      "to": "蓝村路",
+      "line": "4号线"
+    },
+    {
+      "from": "大木桥路",
+      "to": "鲁班路",
+      "line": "4号线"
+    },
+    {
+      "from": "大连路",
+      "to": "临平路",
+      "line": "4号线"
+    },
+    {
+      "from": "宜山路",
+      "to": "虹桥路",
+      "line": "4号线"
+    },
+    {
+      "from": "宝山路",
+      "to": "海伦路",
+      "line": "4号线"
+    },
+    {
+      "from": "曹杨路",
+      "to": "镇坪路",
+      "line": "4号线"
+    },
+    {
+      "from": "杨树浦路",
+      "to": "大连路",
+      "line": "4号线"
+    },
+    {
+      "from": "浦东大道",
+      "to": "杨树浦路",
+      "line": "4号线"
+    },
+    {
+      "from": "蓝村路",
+      "to": "浦电路(4号线)",
+      "line": "4号线"
+    },
+    {
+      "from": "虹桥路",
+      "to": "延安西路",
+      "line": "4号线"
+    },
+    {
+      "from": "西藏南路",
+      "to": "南浦大桥",
+      "line": "4号线"
+    },
+    {
+      "from": "金沙江路",
+      "to": "曹杨路",
+      "line": "4号线"
+    },
+    {
+      "from": "镇坪路",
+      "to": "中潭路",
+      "line": "4号线"
+    },
+    {
+      "from": "鲁班路",
+      "to": "西藏南路",
+      "line": "4号线"
+    },
+    {
+      "from": "东川路",
+      "to": "金平路",
+      "line": "5号线"
+    },
+    {
+      "from": "东川路",
+      "to": "江川路",
+      "line": "5号线"
+    },
+    {
+      "from": "剑川路",
+      "to": "东川路",
+      "line": "5号线"
+    },
+    {
+      "from": "北桥",
+      "to": "剑川路",
+      "line": "5号线"
+    },
+    {
+      "from": "华宁路",
+      "to": "文井路",
+      "line": "5号线"
+    },
+    {
+      "from": "奉浦大道",
+      "to": "环城东路",
+      "line": "5号线"
+    },
+    {
+      "from": "文井路",
+      "to": "闵行开发区",
+      "line": "5号线"
+    },
+    {
+      "from": "春申路",
+      "to": "银都路",
+      "line": "5号线"
+    },
+    {
+      "from": "望园路",
+      "to": "金海湖",
+      "line": "5号线"
+    },
+    {
+      "from": "江川路",
+      "to": "西渡",
+      "line": "5号线"
+    },
+    {
+      "from": "环城东路",
+      "to": "望园路",
+      "line": "5号线"
+    },
+    {
+      "from": "莘庄",
+      "to": "春申路",
+      "line": "5号线"
+    },
+    {
+      "from": "萧塘",
+      "to": "奉浦大道",
+      "line": "5号线"
+    },
+    {
+      "from": "西渡",
+      "to": "萧塘",
+      "line": "5号线"
+    },
+    {
+      "from": "金平路",
+      "to": "华宁路",
+      "line": "5号线"
+    },
+    {
+      "from": "金海湖",
+      "to": "奉贤新城",
+      "line": "5号线"
+    },
+    {
+      "from": "银都路",
+      "to": "颛桥",
+      "line": "5号线"
+    },
+    {
+      "from": "颛桥",
+      "to": "北桥",
+      "line": "5号线"
+    },
+    {
+      "from": "上南路",
+      "to": "灵岩南路",
+      "line": "6号线"
+    },
+    {
+      "from": "上海儿童医学中心",
+      "to": "临沂新村",
+      "line": "6号线"
+    },
+    {
+      "from": "世纪大道",
+      "to": "源深体育中心",
+      "line": "6号线"
+    },
+    {
+      "from": "世纪大道",
+      "to": "浦电路(6号线)",
+      "line": "6号线"
+    },
+    {
+      "from": "东明路",
+      "to": "高青路",
+      "line": "6号线"
+    },
+    {
+      "from": "东靖路",
+      "to": "巨峰路",
+      "line": "6号线"
+    },
+    {
+      "from": "临沂新村",
+      "to": "高科西路",
+      "line": "6号线"
+    },
+    {
+      "from": "云山路",
+      "to": "德平路",
+      "line": "6号线"
+    },
+    {
+      "from": "五洲大道",
+      "to": "东靖路",
+      "line": "6号线"
+    },
+    {
+      "from": "五莲路",
+      "to": "博兴路",
+      "line": "6号线"
+    },
+    {
+      "from": "北洋泾路",
+      "to": "民生路",
+      "line": "6号线"
+    },
+    {
+      "from": "华夏西路",
+      "to": "上南路",
+      "line": "6号线"
+    },
+    {
+      "from": "博兴路",
+      "to": "金桥路",
+      "line": "6号线"
+    },
+    {
+      "from": "外高桥保税区北",
+      "to": "航津路",
+      "line": "6号线"
+    },
+    {
+      "from": "外高桥保税区南",
+      "to": "洲海路",
+      "line": "6号线"
+    },
+    {
+      "from": "巨峰路",
+      "to": "五莲路",
+      "line": "6号线"
+    },
+    {
+      "from": "德平路",
+      "to": "北洋泾路",
+      "line": "6号线"
+    },
+    {
+      "from": "民生路",
+      "to": "源深体育中心",
+      "line": "6号线"
+    },
+    {
+      "from": "洲海路",
+      "to": "五洲大道",
+      "line": "6号线"
+    },
+    {
+      "from": "港城路",
+      "to": "外高桥保税区北",
+      "line": "6号线"
+    },
+    {
+      "from": "灵岩南路",
+      "to": "东方体育中心",
+      "line": "6号线"
+    },
+    {
+      "from": "航津路",
+      "to": "外高桥保税区南",
+      "line": "6号线"
+    },
+    {
+      "from": "蓝村路",
+      "to": "浦电路(6号线)",
+      "line": "6号线"
+    },
+    {
+      "from": "蓝村路",
+      "to": "上海儿童医学中心",
+      "line": "6号线"
+    },
+    {
+      "from": "金桥路",
+      "to": "云山路",
+      "line": "6号线"
+    },
+    {
+      "from": "高科西路",
+      "to": "东明路",
+      "line": "6号线"
+    },
+    {
+      "from": "高青路",
+      "to": "华夏西路",
+      "line": "6号线"
+    },
+    {
+      "from": "上大路",
+      "to": "南陈路",
+      "line": "7号线"
+    },
+    {
+      "from": "上海大学",
+      "to": "祁华路",
+      "line": "7号线"
+    },
+    {
+      "from": "东安路",
+      "to": "龙华中路",
+      "line": "7号线"
+    },
+    {
+      "from": "东安路",
+      "to": "肇嘉浜路",
+      "line": "7号线"
+    },
+    {
+      "from": "云台路",
+      "to": "耀华路",
+      "line": "7号线"
+    },
+    {
+      "from": "刘行",
+      "to": "潘广路",
+      "line": "7号线"
+    },
+    {
+      "from": "南陈路",
+      "to": "上海大学",
+      "line": "7号线"
+    },
+    {
+      "from": "后滩",
+      "to": "龙华中路",
+      "line": "7号线"
+    },
+    {
+      "from": "场中路",
+      "to": "上大路",
+      "line": "7号线"
+    },
+    {
+      "from": "大华三路",
+      "to": "行知路",
+      "line": "7号线"
+    },
+    {
+      "from": "大场镇",
+      "to": "场中路",
+      "line": "7号线"
+    },
+    {
+      "from": "岚皋路",
+      "to": "新村路",
+      "line": "7号线"
+    },
+    {
+      "from": "常熟路",
+      "to": "肇嘉浜路",
+      "line": "7号线"
+    },
+    {
+      "from": "常熟路",
+      "to": "静安寺",
+      "line": "7号线"
+    },
+    {
+      "from": "新村路",
+      "to": "大华三路",
+      "line": "7号线"
+    },
+    {
+      "from": "昌平路",
+      "to": "长寿路",
+      "line": "7号线"
+    },
+    {
+      "from": "潘广路",
+      "to": "罗南新村",
+      "line": "7号线"
+    },
+    {
+      "from": "祁华路",
+      "to": "顾村公园",
+      "line": "7号线"
+    },
+    {
+      "from": "罗南新村",
+      "to": "美兰湖",
+      "line": "7号线"
+    },
+    {
+      "from": "耀华路",
+      "to": "长清路",
+      "line": "7号线"
+    },
+    {
+      "from": "芳华路",
+      "to": "锦绣路",
+      "line": "7号线"
+    },
+    {
+      "from": "行知路",
+      "to": "大场镇",
+      "line": "7号线"
+    },
+    {
+      "from": "锦绣路",
+      "to": "杨高南路",
+      "line": "7号线"
+    },
+    {
+      "from": "镇坪路",
+      "to": "长寿路",
+      "line": "7号线"
+    },
+    {
+      "from": "镇坪路",
+      "to": "岚皋路",
+      "line": "7号线"
+    },
+    {
+      "from": "长清路",
+      "to": "后滩",
+      "line": "7号线"
+    },
+    {
+      "from": "静安寺",
+      "to": "昌平路",
+      "line": "7号线"
+    },
+    {
+      "from": "顾村公园",
+      "to": "刘行",
+      "line": "7号线"
+    },
+    {
+      "from": "高科西路",
+      "to": "杨高南路",
+      "line": "7号线"
+    },
+    {
+      "from": "高科西路",
+      "to": "云台路",
+      "line": "7号线"
+    },
+    {
+      "from": "龙阳路",
+      "to": "花木路",
+      "line": "7号线"
+    },
+    {
+      "from": "龙阳路",
+      "to": "芳华路",
+      "line": "7号线"
+    },
+    {
+      "from": "东方体育中心",
+      "to": "凌兆新村",
+      "line": "8号线"
+    },
+    {
+      "from": "东方体育中心",
+      "to": "杨思",
+      "line": "8号线"
+    },
+    {
+      "from": "中兴路",
+      "to": "西藏北路",
+      "line": "8号线"
+    },
+    {
+      "from": "人民广场",
+      "to": "大世界",
+      "line": "8号线"
+    },
+    {
+      "from": "人民广场",
+      "to": "曲阜路",
+      "line": "8号线"
+    },
+    {
+      "from": "四平路",
+      "to": "鞍山新村",
+      "line": "8号线"
+    },
+    {
+      "from": "嫩江路",
+      "to": "市光路",
+      "line": "8号线"
+    },
+    {
+      "from": "延吉中路",
+      "to": "黄兴公园",
+      "line": "8号线"
+    },
+    {
+      "from": "曲阜路",
+      "to": "中兴路",
+      "line": "8号线"
+    },
+    {
+      "from": "曲阳路",
+      "to": "四平路",
+      "line": "8号线"
+    },
+    {
+      "from": "杨思",
+      "to": "成山路",
+      "line": "8号线"
+    },
+    {
+      "from": "江月路",
+      "to": "浦江镇",
+      "line": "8号线"
+    },
+    {
+      "from": "江浦路",
+      "to": "黄兴路",
+      "line": "8号线"
+    },
+    {
+      "from": "沈杜公路",
+      "to": "联航路",
+      "line": "8号线"
+    },
+    {
+      "from": "浦江镇",
+      "to": "芦恒路",
+      "line": "8号线"
+    },
+    {
+      "from": "翔殷路",
+      "to": "嫩江路",
+      "line": "8号线"
+    },
+    {
+      "from": "耀华路",
+      "to": "成山路",
+      "line": "8号线"
+    },
+    {
+      "from": "耀华路",
+      "to": "中华艺术宫",
+      "line": "8号线"
+    },
+    {
+      "from": "老西门",
+      "to": "大世界",
+      "line": "8号线"
+    },
+    {
+      "from": "联航路",
+      "to": "江月路",
+      "line": "8号线"
+    },
+    {
+      "from": "芦恒路",
+      "to": "凌兆新村",
+      "line": "8号线"
+    },
+    {
+      "from": "虹口足球场",
+      "to": "西藏北路",
+      "line": "8号线"
+    },
+    {
+      "from": "虹口足球场",
+      "to": "曲阳路",
+      "line": "8号线"
+    },
+    {
+      "from": "西藏南路",
+      "to": "中华艺术宫",
+      "line": "8号线"
+    },
+    {
+      "from": "西藏南路",
+      "to": "陆家浜路",
+      "line": "8号线"
+    },
+    {
+      "from": "陆家浜路",
+      "to": "老西门",
+      "line": "8号线"
+    },
+    {
+      "from": "鞍山新村",
+      "to": "江浦路",
+      "line": "8号线"
+    },
+    {
+      "from": "黄兴公园",
+      "to": "翔殷路",
+      "line": "8号线"
+    },
+    {
+      "from": "黄兴路",
+      "to": "延吉中路",
+      "line": "8号线"
+    },
+    {
+      "from": "七宝",
+      "to": "中春路",
+      "line": "9号线"
+    },
+    {
+      "from": "世纪大道",
+      "to": "杨高中路",
+      "line": "9号线"
+    },
+    {
+      "from": "世纪大道",
+      "to": "商城路",
+      "line": "9号线"
+    },
+    {
+      "from": "中春路",
+      "to": "九亭",
+      "line": "9号线"
+    },
+    {
+      "from": "九亭",
+      "to": "泗泾",
+      "line": "9号线"
+    },
+    {
+      "from": "佘山",
+      "to": "洞泾",
+      "line": "9号线"
+    },
+    {
+      "from": "台儿庄路",
+      "to": "蓝天路",
+      "line": "9号线"
+    },
+    {
+      "from": "合川路",
+      "to": "星中路",
+      "line": "9号线"
+    },
+    {
+      "from": "商城路",
+      "to": "小南门",
+      "line": "9号线"
+    },
+    {
+      "from": "宜山路",
+      "to": "桂林路",
+      "line": "9号线"
+    },
+    {
+      "from": "徐家汇",
+      "to": "肇嘉浜路",
+      "line": "9号线"
+    },
+    {
+      "from": "徐家汇",
+      "to": "宜山路",
+      "line": "9号线"
+    },
+    {
+      "from": "打浦桥",
+      "to": "嘉善路",
+      "line": "9号线"
+    },
+    {
+      "from": "星中路",
+      "to": "七宝",
+      "line": "9号线"
+    },
+    {
+      "from": "曹路",
+      "to": "民雷路",
+      "line": "9号线"
+    },
+    {
+      "from": "松江体育中心",
+      "to": "醉白池",
+      "line": "9号线"
+    },
+    {
+      "from": "松江大学城",
+      "to": "松江新城",
+      "line": "9号线"
+    },
+    {
+      "from": "松江新城",
+      "to": "松江体育中心",
+      "line": "9号线"
+    },
+    {
+      "from": "桂林路",
+      "to": "漕河泾开发区",
+      "line": "9号线"
+    },
+    {
+      "from": "民雷路",
+      "to": "顾唐路",
+      "line": "9号线"
+    },
+    {
+      "from": "泗泾",
+      "to": "佘山",
+      "line": "9号线"
+    },
+    {
+      "from": "洞泾",
+      "to": "松江大学城",
+      "line": "9号线"
+    },
+    {
+      "from": "漕河泾开发区",
+      "to": "合川路",
+      "line": "9号线"
+    },
+    {
+      "from": "肇嘉浜路",
+      "to": "嘉善路",
+      "line": "9号线"
+    },
+    {
+      "from": "芳甸路",
+      "to": "杨高中路",
+      "line": "9号线"
+    },
+    {
+      "from": "蓝天路",
+      "to": "芳甸路",
+      "line": "9号线"
+    },
+    {
+      "from": "醉白池",
+      "to": "松江南站",
+      "line": "9号线"
+    },
+    {
+      "from": "金吉路",
+      "to": "金桥",
+      "line": "9号线"
+    },
+    {
+      "from": "金桥",
+      "to": "台儿庄路",
+      "line": "9号线"
+    },
+    {
+      "from": "金海路",
+      "to": "金吉路",
+      "line": "9号线"
+    },
+    {
+      "from": "陆家浜路",
+      "to": "小南门",
+      "line": "9号线"
+    },
+    {
+      "from": "陆家浜路",
+      "to": "马当路",
+      "line": "9号线"
+    },
+    {
+      "from": "顾唐路",
+      "to": "金海路",
+      "line": "9号线"
+    },
+    {
+      "from": "马当路",
+      "to": "打浦桥",
+      "line": "9号线"
+    },
+    {
+      "from": "三门路",
+      "to": "江湾体育场",
+      "line": "10号线"
+    },
+    {
+      "from": "上海动物园",
+      "to": "虹桥1号航站楼",
+      "line": "10号线"
+    },
+    {
+      "from": "上海图书馆",
+      "to": "交通大学",
+      "line": "10号线"
+    },
+    {
+      "from": "五角场",
+      "to": "国权路",
+      "line": "10号线"
+    },
+    {
+      "from": "伊犁路",
+      "to": "水城路",
+      "line": "10号线"
+    },
+    {
+      "from": "南京东路",
+      "to": "天潼路",
+      "line": "10号线"
+    },
+    {
+      "from": "南京东路",
+      "to": "豫园",
+      "line": "10号线"
+    },
+    {
+      "from": "双江路",
+      "to": "国帆路",
+      "line": "10号线"
+    },
+    {
+      "from": "四川北路",
+      "to": "天潼路",
+      "line": "10号线"
+    },
+    {
+      "from": "四平路",
+      "to": "同济大学",
+      "line": "10号线"
+    },
+    {
+      "from": "四平路",
+      "to": "邮电新村",
+      "line": "10号线"
+    },
+    {
+      "from": "国帆路",
+      "to": "新江湾城",
+      "line": "10号线"
+    },
+    {
+      "from": "国权路",
+      "to": "同济大学",
+      "line": "10号线"
+    },
+    {
+      "from": "宋园路",
+      "to": "伊犁路",
+      "line": "10号线"
+    },
+    {
+      "from": "新江湾城",
+      "to": "殷高东路",
+      "line": "10号线"
+    },
+    {
+      "from": "殷高东路",
+      "to": "三门路",
+      "line": "10号线"
+    },
+    {
+      "from": "水城路",
+      "to": "龙溪路",
+      "line": "10号线"
+    },
+    {
+      "from": "江湾体育场",
+      "to": "五角场",
+      "line": "10号线"
+    },
+    {
+      "from": "海伦路",
+      "to": "邮电新村",
+      "line": "10号线"
+    },
+    {
+      "from": "海伦路",
+      "to": "四川北路",
+      "line": "10号线"
+    },
+    {
+      "from": "港城路",
+      "to": "基隆路",
+      "line": "10号线"
+    },
+    {
+      "from": "港城路",
+      "to": "高桥",
+      "line": "10号线"
+    },
+    {
+      "from": "紫藤路",
+      "to": "航中路",
+      "line": "10号线"
+    },
+    {
+      "from": "老西门",
+      "to": "豫园",
+      "line": "10号线"
+    },
+    {
+      "from": "老西门",
+      "to": "新天地",
+      "line": "10号线"
+    },
+    {
+      "from": "虹桥2号航站楼",
+      "to": "虹桥火车站",
+      "line": "10号线"
+    },
+    {
+      "from": "虹桥2号航站楼",
+      "to": "虹桥1号航站楼",
+      "line": "10号线"
+    },
+    {
+      "from": "虹桥路",
+      "to": "交通大学",
+      "line": "10号线"
+    },
+    {
+      "from": "虹桥路",
+      "to": "宋园路",
+      "line": "10号线"
+    },
+    {
+      "from": "陕西南路",
+      "to": "新天地",
+      "line": "10号线"
+    },
+    {
+      "from": "陕西南路",
+      "to": "上海图书馆",
+      "line": "10号线"
+    },
+    {
+      "from": "高桥",
+      "to": "高桥西",
+      "line": "10号线"
+    },
+    {
+      "from": "高桥西",
+      "to": "双江路",
+      "line": "10号线"
+    },
+    {
+      "from": "龙柏新村",
+      "to": "紫藤路",
+      "line": "10号线"
+    },
+    {
+      "from": "龙溪路",
+      "to": "上海动物园",
+      "line": "10号线"
+    },
+    {
+      "from": "龙溪路",
+      "to": "龙柏新村",
+      "line": "10号线"
+    },
+    {
+      "from": "三林东",
+      "to": "三林",
+      "line": "11号线"
+    },
+    {
+      "from": "上海汽车城",
+      "to": "安亭",
+      "line": "11号线"
+    },
+    {
+      "from": "上海西站",
+      "to": "李子园",
+      "line": "11号线"
+    },
+    {
+      "from": "上海赛车场",
+      "to": "昌吉东路",
+      "line": "11号线"
+    },
+    {
+      "from": "东方体育中心",
+      "to": "三林",
+      "line": "11号线"
+    },
+    {
+      "from": "东方体育中心",
+      "to": "龙耀路",
+      "line": "11号线"
+    },
+    {
+      "from": "云锦路",
+      "to": "龙华",
+      "line": "11号线"
+    },
+    {
+      "from": "兆丰路",
+      "to": "光明路",
+      "line": "11号线"
+    },
+    {
+      "from": "光明路",
+      "to": "花桥",
+      "line": "11号线"
+    },
+    {
+      "from": "南翔",
+      "to": "马陆",
+      "line": "11号线"
+    },
+    {
+      "from": "嘉定新城",
+      "to": "白银路",
+      "line": "11号线"
+    },
+    {
+      "from": "嘉定新城",
+      "to": "上海赛车场",
+      "line": "11号线"
+    },
+    {
+      "from": "嘉定西",
+      "to": "嘉定北",
+      "line": "11号线"
+    },
+    {
+      "from": "安亭",
+      "to": "兆丰路",
+      "line": "11号线"
+    },
+    {
+      "from": "康新公路",
+      "to": "秀沿路",
+      "line": "11号线"
+    },
+    {
+      "from": "徐家汇",
+      "to": "上海游泳馆",
+      "line": "11号线"
+    },
+    {
+      "from": "徐家汇",
+      "to": "交通大学",
+      "line": "11号线"
+    },
+    {
+      "from": "御桥",
+      "to": "浦三路",
+      "line": "11号线"
+    },
+    {
+      "from": "昌吉东路",
+      "to": "上海汽车城",
+      "line": "11号线"
+    },
+    {
+      "from": "曹杨路",
+      "to": "隆德路",
+      "line": "11号线"
+    },
+    {
+      "from": "曹杨路",
+      "to": "枫桥路",
+      "line": "11号线"
+    },
+    {
+      "from": "李子园",
+      "to": "祁连山路",
+      "line": "11号线"
+    },
+    {
+      "from": "枫桥路",
+      "to": "真如",
+      "line": "11号线"
+    },
+    {
+      "from": "桃浦新村",
+      "to": "南翔",
+      "line": "11号线"
+    },
+    {
+      "from": "武威路",
+      "to": "桃浦新村",
+      "line": "11号线"
+    },
+    {
+      "from": "江苏路",
+      "to": "交通大学",
+      "line": "11号线"
+    },
+    {
+      "from": "江苏路",
+      "to": "隆德路",
+      "line": "11号线"
+    },
+    {
+      "from": "浦三路",
+      "to": "三林东",
+      "line": "11号线"
+    },
+    {
+      "from": "白银路",
+      "to": "嘉定西",
+      "line": "11号线"
+    },
+    {
+      "from": "真如",
+      "to": "上海西站",
+      "line": "11号线"
+    },
+    {
+      "from": "祁连山路",
+      "to": "武威路",
+      "line": "11号线"
+    },
+    {
+      "from": "秀沿路",
+      "to": "罗山路",
+      "line": "11号线"
+    },
+    {
+      "from": "罗山路",
+      "to": "御桥",
+      "line": "11号线"
+    },
+    {
+      "from": "迪士尼",
+      "to": "康新公路",
+      "line": "11号线"
+    },
+    {
+      "from": "马陆",
+      "to": "嘉定新城",
+      "line": "11号线"
+    },
+    {
+      "from": "龙华",
+      "to": "上海游泳馆",
+      "line": "11号线"
+    },
+    {
+      "from": "龙耀路",
+      "to": "云锦路",
+      "line": "11号线"
+    },
+    {
+      "from": "七莘路",
+      "to": "虹莘路",
+      "line": "12号线"
+    },
+    {
+      "from": "东兰路",
+      "to": "虹梅路",
+      "line": "12号线"
+    },
+    {
+      "from": "国际客运中心",
+      "to": "提篮桥",
+      "line": "12号线"
+    },
+    {
+      "from": "复兴岛",
+      "to": "东陆路",
+      "line": "12号线"
+    },
+    {
+      "from": "大木桥路",
+      "to": "龙华中路",
+      "line": "12号线"
+    },
+    {
+      "from": "大木桥路",
+      "to": "嘉善路",
+      "line": "12号线"
+    },
+    {
+      "from": "大连路",
+      "to": "提篮桥",
+      "line": "12号线"
+    },
+    {
+      "from": "大连路",
+      "to": "江浦公园",
+      "line": "12号线"
+    },
+    {
+      "from": "天潼路",
+      "to": "国际客运中心",
+      "line": "12号线"
+    },
+    {
+      "from": "宁国路",
+      "to": "隆昌路",
+      "line": "12号线"
+    },
+    {
+      "from": "巨峰路",
+      "to": "东陆路",
+      "line": "12号线"
+    },
+    {
+      "from": "巨峰路",
+      "to": "杨高北路",
+      "line": "12号线"
+    },
+    {
+      "from": "曲阜路",
+      "to": "天潼路",
+      "line": "12号线"
+    },
+    {
+      "from": "杨高北路",
+      "to": "金京路",
+      "line": "12号线"
+    },
+    {
+      "from": "汉中路",
+      "to": "南京西路",
+      "line": "12号线"
+    },
+    {
+      "from": "汉中路",
+      "to": "曲阜路",
+      "line": "12号线"
+    },
+    {
+      "from": "江浦公园",
+      "to": "宁国路",
+      "line": "12号线"
+    },
+    {
+      "from": "漕宝路",
+      "to": "桂林公园",
+      "line": "12号线"
+    },
+    {
+      "from": "漕宝路",
+      "to": "龙漕路",
+      "line": "12号线"
+    },
+    {
+      "from": "爱国路",
+      "to": "复兴岛",
+      "line": "12号线"
+    },
+    {
+      "from": "虹梅路",
+      "to": "虹漕路",
+      "line": "12号线"
+    },
+    {
+      "from": "虹漕路",
+      "to": "桂林公园",
+      "line": "12号线"
+    },
+    {
+      "from": "虹莘路",
+      "to": "顾戴路",
+      "line": "12号线"
+    },
+    {
+      "from": "金京路",
+      "to": "申江路",
+      "line": "12号线"
+    },
+    {
+      "from": "金海路",
+      "to": "申江路",
+      "line": "12号线"
+    },
+    {
+      "from": "陕西南路",
+      "to": "嘉善路",
+      "line": "12号线"
+    },
+    {
+      "from": "陕西南路",
+      "to": "南京西路",
+      "line": "12号线"
+    },
+    {
+      "from": "隆昌路",
+      "to": "爱国路",
+      "line": "12号线"
+    },
+    {
+      "from": "顾戴路",
+      "to": "东兰路",
+      "line": "12号线"
+    },
+    {
+      "from": "龙华中路",
+      "to": "龙华",
+      "line": "12号线"
+    },
+    {
+      "from": "龙漕路",
+      "to": "龙华",
+      "line": "12号线"
+    },
+    {
+      "from": "下南路",
+      "to": "北蔡",
+      "line": "13号线"
+    },
+    {
+      "from": "世博会博物馆",
+      "to": "世博大道",
+      "line": "13号线"
+    },
+    {
+      "from": "东明路",
+      "to": "成山路",
+      "line": "13号线"
+    },
+    {
+      "from": "东明路",
+      "to": "华鹏路",
+      "line": "13号线"
+    },
+    {
+      "from": "中科路",
+      "to": "学林路",
+      "line": "13号线"
+    },
+    {
+      "from": "丰庄",
+      "to": "祁连山南路",
+      "line": "13号线"
+    },
+    {
+      "from": "北蔡",
+      "to": "陈春路",
+      "line": "13号线"
+    },
+    {
+      "from": "华夏中路",
+      "to": "中科路",
+      "line": "13号线"
+    },
+    {
+      "from": "华鹏路",
+      "to": "下南路",
+      "line": "13号线"
+    },
+    {
+      "from": "南京西路",
+      "to": "自然博物馆",
+      "line": "13号线"
+    },
+    {
+      "from": "南京西路",
+      "to": "淮海中路",
+      "line": "13号线"
+    },
+    {
+      "from": "学林路",
+      "to": "张江路",
+      "line": "13号线"
+    },
+    {
+      "from": "新天地",
+      "to": "淮海中路",
+      "line": "13号线"
+    },
+    {
+      "from": "汉中路",
+      "to": "江宁路",
+      "line": "13号线"
+    },
+    {
+      "from": "汉中路",
+      "to": "自然博物馆",
+      "line": "13号线"
+    },
+    {
+      "from": "真北路",
+      "to": "大渡河路",
+      "line": "13号线"
+    },
+    {
+      "from": "祁连山南路",
+      "to": "真北路",
+      "line": "13号线"
+    },
+    {
+      "from": "莲溪路",
+      "to": "华夏中路",
+      "line": "13号线"
+    },
+    {
+      "from": "金沙江西路",
+      "to": "丰庄",
+      "line": "13号线"
+    },
+    {
+      "from": "金沙江路",
+      "to": "大渡河路",
+      "line": "13号线"
+    },
+    {
+      "from": "金沙江路",
+      "to": "隆德路",
+      "line": "13号线"
+    },
+    {
+      "from": "金运路",
+      "to": "金沙江西路",
+      "line": "13号线"
+    },
+    {
+      "from": "长寿路",
+      "to": "武宁路",
+      "line": "13号线"
+    },
+    {
+      "from": "长寿路",
+      "to": "江宁路",
+      "line": "13号线"
+    },
+    {
+      "from": "长清路",
+      "to": "世博大道",
+      "line": "13号线"
+    },
+    {
+      "from": "长清路",
+      "to": "成山路",
+      "line": "13号线"
+    },
+    {
+      "from": "陈春路",
+      "to": "莲溪路",
+      "line": "13号线"
+    },
+    {
+      "from": "隆德路",
+      "to": "武宁路",
+      "line": "13号线"
+    },
+    {
+      "from": "马当路",
+      "to": "新天地",
+      "line": "13号线"
+    },
+    {
+      "from": "马当路",
+      "to": "世博会博物馆",
+      "line": "13号线"
+    },
+    {
+      "from": "临洮路",
+      "to": "嘉怡路",
+      "line": "14号线"
+    },
+    {
+      "from": "乐秀路",
+      "to": "临洮路",
+      "line": "14号线"
+    },
+    {
+      "from": "云山路",
+      "to": "歇浦路",
+      "line": "14号线"
+    },
+    {
+      "from": "云山路",
+      "to": "蓝天路",
+      "line": "14号线"
+    },
+    {
+      "from": "云顺路",
+      "to": "浦东足球场",
+      "line": "14号线"
+    },
+    {
+      "from": "嘉怡路",
+      "to": "定边路",
+      "line": "14号线"
+    },
+    {
+      "from": "大世界",
+      "to": "豫园",
+      "line": "14号线"
+    },
+    {
+      "from": "定边路",
+      "to": "真新新村",
+      "line": "14号线"
+    },
+    {
+      "from": "封浜",
+      "to": "乐秀路",
+      "line": "14号线"
+    },
+    {
+      "from": "昌邑路",
+      "to": "歇浦路",
+      "line": "14号线"
+    },
+    {
+      "from": "曹杨路",
+      "to": "中宁路",
+      "line": "14号线"
+    },
+    {
+      "from": "曹杨路",
+      "to": "武宁路",
+      "line": "14号线"
+    },
+    {
+      "from": "武宁路",
+      "to": "武定路",
+      "line": "14号线"
+    },
+    {
+      "from": "浦东大道",
+      "to": "浦东南路",
+      "line": "14号线"
+    },
+    {
+      "from": "浦东大道",
+      "to": "源深路",
+      "line": "14号线"
+    },
+    {
+      "from": "浦东足球场",
+      "to": "金粤路",
+      "line": "14号线"
+    },
+    {
+      "from": "源深路",
+      "to": "昌邑路",
+      "line": "14号线"
+    },
+    {
+      "from": "真光路",
+      "to": "铜川路",
+      "line": "14号线"
+    },
+    {
+      "from": "真如",
+      "to": "铜川路",
+      "line": "14号线"
+    },
+    {
+      "from": "真如",
+      "to": "中宁路",
+      "line": "14号线"
+    },
+    {
+      "from": "真新新村",
+      "to": "真光路",
+      "line": "14号线"
+    },
+    {
+      "from": "蓝天路",
+      "to": "黄杨路",
+      "line": "14号线"
+    },
+    {
+      "from": "金粤路",
+      "to": "桂桥路",
+      "line": "14号线"
+    },
+    {
+      "from": "陆家嘴",
+      "to": "豫园",
+      "line": "14号线"
+    },
+    {
+      "from": "陆家嘴",
+      "to": "浦东南路",
+      "line": "14号线"
+    },
+    {
+      "from": "静安寺",
+      "to": "武定路",
+      "line": "14号线"
+    },
+    {
+      "from": "黄杨路",
+      "to": "云顺路",
+      "line": "14号线"
+    },
+    {
+      "from": "黄陂南路",
+      "to": "静安寺",
+      "line": "14号线"
+    },
+    {
+      "from": "黄陂南路",
+      "to": "大世界",
+      "line": "14号线"
+    },
+    {
+      "from": "上海南站",
+      "to": "桂林公园",
+      "line": "15号线"
+    },
+    {
+      "from": "上海南站",
+      "to": "华东理工大学",
+      "line": "15号线"
+    },
+    {
+      "from": "上海西站",
+      "to": "武威东路",
+      "line": "15号线"
+    },
+    {
+      "from": "上海西站",
+      "to": "铜川路",
+      "line": "15号线"
+    },
+    {
+      "from": "丰翔路",
+      "to": "南大路",
+      "line": "15号线"
+    },
+    {
+      "from": "元江路",
+      "to": "永德路",
+      "line": "15号线"
+    },
+    {
+      "from": "华东理工大学",
+      "to": "罗秀路",
+      "line": "15号线"
+    },
+    {
+      "from": "华泾西",
+      "to": "虹梅南路",
+      "line": "15号线"
+    },
+    {
+      "from": "南大路",
+      "to": "祁安路",
+      "line": "15号线"
+    },
+    {
+      "from": "双柏路",
+      "to": "元江路",
+      "line": "15号线"
+    },
+    {
+      "from": "古浪路",
+      "to": "武威东路",
+      "line": "15号线"
+    },
+    {
+      "from": "大渡河路",
+      "to": "梅岭北路",
+      "line": "15号线"
+    },
+    {
+      "from": "大渡河路",
+      "to": "长风公园",
+      "line": "15号线"
+    },
+    {
+      "from": "姚虹路",
+      "to": "吴中路",
+      "line": "15号线"
+    },
+    {
+      "from": "娄山关路",
+      "to": "长风公园",
+      "line": "15号线"
+    },
+    {
+      "from": "娄山关路",
+      "to": "红宝石路",
+      "line": "15号线"
+    },
+    {
+      "from": "景西路",
+      "to": "曙建路",
+      "line": "15号线"
+    },
+    {
+      "from": "曙建路",
+      "to": "双柏路",
+      "line": "15号线"
+    },
+    {
+      "from": "朱梅路",
+      "to": "华泾西",
+      "line": "15号线"
+    },
+    {
+      "from": "桂林路",
+      "to": "吴中路",
+      "line": "15号线"
+    },
+    {
+      "from": "桂林路",
+      "to": "桂林公园",
+      "line": "15号线"
+    },
+    {
+      "from": "永德路",
+      "to": "紫竹高新区",
+      "line": "15号线"
+    },
+    {
+      "from": "祁安路",
+      "to": "古浪路",
+      "line": "15号线"
+    },
+    {
+      "from": "红宝石路",
+      "to": "姚虹路",
+      "line": "15号线"
+    },
+    {
+      "from": "罗秀路",
+      "to": "朱梅路",
+      "line": "15号线"
+    },
+    {
+      "from": "虹梅南路",
+      "to": "景西路",
+      "line": "15号线"
+    },
+    {
+      "from": "铜川路",
+      "to": "梅岭北路",
+      "line": "15号线"
+    },
+    {
+      "from": "锦秋路",
+      "to": "丰翔路",
+      "line": "15号线"
+    },
+    {
+      "from": "顾村公园",
+      "to": "锦秋路",
+      "line": "15号线"
+    },
+    {
+      "from": "临港大道",
+      "to": "滴水湖",
+      "line": "16号线"
+    },
+    {
+      "from": "书院",
+      "to": "临港大道",
+      "line": "16号线"
+    },
+    {
+      "from": "周浦东",
+      "to": "鹤沙航城",
+      "line": "16号线"
+    },
+    {
+      "from": "惠南",
+      "to": "惠南东",
+      "line": "16号线"
+    },
+    {
+      "from": "惠南东",
+      "to": "书院",
+      "line": "16号线"
+    },
+    {
+      "from": "新场",
+      "to": "野生动物园",
+      "line": "16号线"
+    },
+    {
+      "from": "罗山路",
+      "to": "华夏中路",
+      "line": "16号线"
+    },
+    {
+      "from": "罗山路",
+      "to": "周浦东",
+      "line": "16号线"
+    },
+    {
+      "from": "航头东",
+      "to": "新场",
+      "line": "16号线"
+    },
+    {
+      "from": "野生动物园",
+      "to": "惠南",
+      "line": "16号线"
+    },
+    {
+      "from": "鹤沙航城",
+      "to": "航头东",
+      "line": "16号线"
+    },
+    {
+      "from": "龙阳路",
+      "to": "华夏中路",
+      "line": "16号线"
+    },
+    {
+      "from": "嘉松中路",
+      "to": "赵巷",
+      "line": "17号线"
+    },
+    {
+      "from": "徐泾北城",
+      "to": "嘉松中路",
+      "line": "17号线"
+    },
+    {
+      "from": "徐盈路",
+      "to": "徐泾北城",
+      "line": "17号线"
+    },
+    {
+      "from": "朱家角",
+      "to": "东方绿舟",
+      "line": "17号线"
+    },
+    {
+      "from": "汇金路",
+      "to": "青浦新城",
+      "line": "17号线"
+    },
+    {
+      "from": "淀山湖大道",
+      "to": "朱家角",
+      "line": "17号线"
+    },
+    {
+      "from": "漕盈路",
+      "to": "淀山湖大道",
+      "line": "17号线"
+    },
+    {
+      "from": "虹桥火车站",
+      "to": "诸光路",
+      "line": "17号线"
+    },
+    {
+      "from": "蟠龙路",
+      "to": "徐盈路",
+      "line": "17号线"
+    },
+    {
+      "from": "诸光路",
+      "to": "蟠龙路",
+      "line": "17号线"
+    },
+    {
+      "from": "赵巷",
+      "to": "汇金路",
+      "line": "17号线"
+    },
+    {
+      "from": "青浦新城",
+      "to": "漕盈路",
+      "line": "17号线"
+    },
+    {
+      "from": "上海财经大学",
+      "to": "复旦大学",
+      "line": "18号线"
+    },
+    {
+      "from": "下沙",
+      "to": "航头",
+      "line": "18号线"
+    },
+    {
+      "from": "周浦",
+      "to": "繁荣路",
+      "line": "18号线"
+    },
+    {
+      "from": "国权路",
+      "to": "复旦大学",
+      "line": "18号线"
+    },
+    {
+      "from": "国权路",
+      "to": "抚顺路",
+      "line": "18号线"
+    },
+    {
+      "from": "平凉路",
+      "to": "丹阳路",
+      "line": "18号线"
+    },
+    {
+      "from": "康桥",
+      "to": "周浦",
+      "line": "18号线"
+    },
+    {
+      "from": "御桥",
+      "to": "莲溪路",
+      "line": "18号线"
+    },
+    {
+      "from": "御桥",
+      "to": "康桥",
+      "line": "18号线"
+    },
+    {
+      "from": "昌邑路",
+      "to": "丹阳路",
+      "line": "18号线"
+    },
+    {
+      "from": "杨高中路",
+      "to": "迎春路",
+      "line": "18号线"
+    },
+    {
+      "from": "殷高路",
+      "to": "上海财经大学",
+      "line": "18号线"
+    },
+    {
+      "from": "民生路",
+      "to": "昌邑路",
+      "line": "18号线"
+    },
+    {
+      "from": "民生路",
+      "to": "杨高中路",
+      "line": "18号线"
+    },
+    {
+      "from": "江浦公园",
+      "to": "平凉路",
+      "line": "18号线"
+    },
+    {
+      "from": "江浦路",
+      "to": "抚顺路",
+      "line": "18号线"
+    },
+    {
+      "from": "江浦路",
+      "to": "江浦公园",
+      "line": "18号线"
+    },
+    {
+      "from": "沈梅路",
+      "to": "鹤涛路",
+      "line": "18号线"
+    },
+    {
+      "from": "繁荣路",
+      "to": "沈梅路",
+      "line": "18号线"
+    },
+    {
+      "from": "芳芯路",
+      "to": "北中路",
+      "line": "18号线"
+    },
+    {
+      "from": "莲溪路",
+      "to": "北中路",
+      "line": "18号线"
+    },
+    {
+      "from": "长江南路",
+      "to": "殷高路",
+      "line": "18号线"
+    },
+    {
+      "from": "鹤涛路",
+      "to": "下沙",
+      "line": "18号线"
+    },
+    {
+      "from": "龙阳路",
+      "to": "迎春路",
+      "line": "18号线"
+    },
+    {
+      "from": "龙阳路",
+      "to": "芳芯路",
+      "line": "18号线"
+    }
+  ]
+}

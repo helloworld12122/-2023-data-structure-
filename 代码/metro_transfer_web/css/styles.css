@@ -1,0 +1,874 @@
+/* 全局样式重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    overflow: hidden;
+}
+
+/* 工具类 */
+.hidden {
+    display: none !important;
+}
+
+.no-select {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+/* 加载页面 */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #007AFF;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* 主应用容器 */
+.app-container {
+    width: 100%;
+    height: 100vh;
+    display: flex !important;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    margin: 10px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* 顶部标题栏 */
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    background: linear-gradient(90deg, #007AFF, #5856D6);
+    color: white;
+    box-shadow: 0 4px 20px rgba(0, 122, 255, 0.3);
+}
+
+.header-content h1 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.header-content p {
+    font-size: 14px;
+    opacity: 0.8;
+    font-weight: 300;
+}
+
+.header-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.header-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.header-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+/* 主内容区域 */
+.main-content {
+    flex: 1;
+    display: flex;
+    overflow: hidden;
+}
+
+/* 地铁地图容器 */
+.metro-map-container {
+    flex: 1;
+    position: relative;
+    background: white;
+    border-radius: 0 0 0 20px;
+    overflow: hidden;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.05);
+    min-height: 400px !important;
+    width: 100% !important;
+}
+
+.metro-map {
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 400px !important;
+    cursor: grab;
+    transition: all 0.3s ease;
+}
+
+.metro-map.dragging {
+    cursor: grabbing;
+}
+
+/* 地图控制按钮 - 修复缩放按钮样式 */
+.map-controls {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    z-index: 10;
+}
+
+.map-control-btn {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.95);
+    border: none;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+}
+
+.map-control-btn:hover {
+    background: #007AFF;
+    color: white;
+    transform: scale(1.05);
+}
+
+.map-control-btn:active {
+    transform: scale(0.95);
+}
+
+/* 右侧控制面板 */
+.control-panel {
+    width: 350px;
+    background: rgba(248, 249, 250, 0.95);
+    backdrop-filter: blur(20px);
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    overflow-y: auto;
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.panel-section {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.section-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.section-title::before {
+    content: '';
+    width: 4px;
+    height: 20px;
+    background: linear-gradient(45deg, #007AFF, #5856D6);
+    border-radius: 2px;
+}
+
+/* 表单输入组件 */
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: #555;
+    margin-bottom: 8px;
+}
+
+.input-with-btn {
+    display: flex;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.input-with-btn:focus-within {
+    border-color: #007AFF;
+    box-shadow: 0 4px 20px rgba(0, 122, 255, 0.2);
+}
+
+.input-with-btn input {
+    flex: 1;
+    padding: 15px 18px;
+    border: none;
+    font-size: 16px;
+    background: white;
+    outline: none;
+}
+
+.input-with-btn input::placeholder {
+    color: #999;
+}
+
+.pick-btn {
+    padding: 15px 18px;
+    background: #007AFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pick-btn:hover {
+    background: #0056CC;
+}
+
+.pick-btn.active {
+    background: #FF3B30;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+select {
+    width: 100%;
+    padding: 15px 18px;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    font-size: 16px;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    outline: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+select:focus {
+    border-color: #007AFF;
+    box-shadow: 0 4px 20px rgba(0, 122, 255, 0.2);
+}
+
+/* 按钮组 */
+.button-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.primary-btn, .secondary-btn {
+    flex: 1;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.primary-btn {
+    background: linear-gradient(45deg, #007AFF, #5856D6);
+    color: white;
+    box-shadow: 0 4px 15px rgba(0, 122, 255, 0.3);
+}
+
+.primary-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(0, 122, 255, 0.4);
+}
+
+.secondary-btn {
+    background: #f8f9fa;
+    color: #333;
+    border: 2px solid #e9ecef;
+}
+
+.secondary-btn:hover {
+    background: #e9ecef;
+    transform: translateY(-1px);
+}
+
+.hint-text {
+    font-size: 12px;
+    color: #666;
+    margin-top: 10px;
+    font-style: italic;
+}
+
+/* 路线详情显示 */
+.route-details {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 20px;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.route-step {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 10px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.route-step-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    margin-right: 15px;
+    font-size: 12px;
+}
+
+.route-step-content {
+    flex: 1;
+}
+
+.route-step-line {
+    font-weight: 600;
+    color: #333;
+}
+
+.route-step-stations {
+    color: #666;
+    font-size: 13px;
+    margin-top: 2px;
+}
+
+/* 地铁线路样式 */
+.metro-line {
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none !important;
+    transition: all 0.3s ease;
+}
+
+.metro-line:hover {
+    filter: url(#line-glow);
+}
+
+.metro-line.path-highlight {
+    filter: url(#line-glow);
+    animation: pathPulse 2s ease-in-out infinite;
+}
+
+@keyframes pathPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+}
+
+/* 地铁站点样式 */
+.metro-station {
+    fill: white;
+    stroke-width: 3;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    filter: url(#station-shadow);
+}
+
+.metro-station:hover {
+    r: 12;
+    stroke-width: 4;
+    filter: url(#station-shadow) brightness(1.1);
+}
+
+.metro-station.selected {
+    fill: #FF3B30;
+    stroke: #FF3B30;
+    r: 10;
+    animation: stationPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes stationPulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 0.8;
+    }
+}
+
+/* 站点标签样式 */
+.station-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    fill: #333 !important;
+    pointer-events: none;
+    text-anchor: middle;
+}
+
+.station-label.highlight {
+    font-weight: 700;
+    fill: #007AFF !important;
+}
+
+/* 图例样式 */
+.legend-item {
+    cursor: pointer;
+}
+
+.legend-rect {
+    transition: all 0.3s ease;
+}
+
+.legend-rect:hover {
+    opacity: 0.8;
+    transform: scale(1.1);
+}
+
+.legend-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    fill: #333 !important;
+    pointer-events: none;
+}
+
+/* 模态对话框 */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    max-width: 500px;
+    width: 90%;
+    max-height: 80vh;
+    overflow: hidden;
+    animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 30px;
+    border-bottom: 1px solid #e9ecef;
+    background: #f8f9fa;
+}
+
+.modal-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+}
+
+.modal-close-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    color: #666;
+}
+
+.modal-close-btn:hover {
+    background: #e9ecef;
+    color: #333;
+}
+
+.modal-body {
+    padding: 30px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.modal-footer {
+    padding: 20px 30px;
+    border-top: 1px solid #e9ecef;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+/* 表单样式 */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: #555;
+    margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e9ecef;
+    border-radius: 10px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #007AFF;
+    box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.1);
+    outline: none;
+}
+
+.color-picker {
+    width: 50px;
+    height: 40px;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.color-picker:hover {
+    border-color: #007AFF;
+    transform: scale(1.05);
+}
+
+/* 消息提示 */
+.message-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 2000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.message {
+    padding: 15px 20px;
+    border-radius: 12px;
+    color: white;
+    font-weight: 500;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    animation: messageSlideIn 0.3s ease-out;
+    max-width: 300px;
+}
+
+@keyframes messageSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.message.success {
+    background: linear-gradient(45deg, #28a745, #20c997);
+}
+
+.message.error {
+    background: linear-gradient(45deg, #dc3545, #fd7e14);
+}
+
+.message.warning {
+    background: linear-gradient(45deg, #ffc107, #fd7e14);
+}
+
+.message.info {
+    background: linear-gradient(45deg, #007AFF, #5856D6);
+}
+
+/* 自动完成提示 */
+.autocomplete-container {
+    position: absolute;
+    background: white;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 100;
+}
+
+.autocomplete-item {
+    padding: 12px 15px;
+    cursor: pointer;
+    border-bottom: 1px solid #f8f9fa;
+    transition: all 0.2s ease;
+}
+
+.autocomplete-item:hover,
+.autocomplete-item.selected {
+    background: #f8f9fa;
+    color: #007AFF;
+}
+
+.autocomplete-item:last-child {
+    border-bottom: none;
+}
+
+/* 站点选择模式 */
+.picking-mode {
+    cursor: crosshair !important;
+}
+
+.picking-hint {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 122, 255, 0.9);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    z-index: 100;
+    pointer-events: none;
+    box-shadow: 0 4px 15px rgba(0, 122, 255, 0.3);
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+/* 响应式设计 */
+@media (max-width: 1200px) {
+    .control-panel {
+        width: 300px;
+    }
+}
+
+@media (max-width: 768px) {
+    .app-container {
+        margin: 5px;
+        border-radius: 10px;
+    }
+
+    .app-header {
+        padding: 15px 20px;
+    }
+
+    .header-content h1 {
+        font-size: 24px;
+    }
+
+    .main-content {
+        flex-direction: column;
+    }
+
+    .metro-map-container {
+        height: 60vh;
+        border-radius: 0;
+    }
+
+    .control-panel {
+        width: 100%;
+        height: 40vh;
+        padding: 20px;
+        overflow-y: auto;
+    }
+
+    .panel-section {
+        padding: 20px;
+        margin-bottom: 15px;
+    }
+
+    .button-group {
+        flex-direction: column;
+    }
+
+    .map-controls {
+        top: 10px;
+        left: 10px;
+    }
+
+    .map-control-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .app-header {
+        padding: 10px 15px;
+    }
+
+    .header-content h1 {
+        font-size: 20px;
+    }
+
+    .header-actions {
+        gap: 5px;
+    }
+
+    .header-btn {
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+
+    .control-panel {
+        padding: 15px;
+    }
+
+    .modal-content {
+        width: 95%;
+        border-radius: 15px;
+    }
+
+    .modal-header,
+    .modal-body,
+    .modal-footer {
+        padding: 20px;
+    }
+}
+
+/* 打印样式 */
+@media print {
+    .control-panel,
+    .map-controls,
+    .app-header {
+        display: none !important;
+    }
+
+    .main-content {
+        flex-direction: row;
+    }
+
+    .metro-map-container {
+        width: 100% !important;
+        height: 100vh !important;
+    }
+}
+
+/* 无障碍支持 */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* 高对比度模式 */
+@media (prefers-contrast: high) {
+    .metro-line {
+        stroke-width: 10;
+    }
+
+    .metro-station {
+        stroke-width: 4;
+    }
+
+    .station-label {
+        font-weight: 700;
+        text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+    }
+}
